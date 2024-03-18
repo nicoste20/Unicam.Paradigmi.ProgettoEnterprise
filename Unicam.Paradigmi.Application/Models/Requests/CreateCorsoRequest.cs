@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unicam.Paradigmi.Models.Entities;
 
-namespace Unicam.Paradigmi.Application.Models
+namespace Unicam.Paradigmi.Application.Models.Requests
 {
     public class CreateCorsoRequest
     {
@@ -19,8 +19,8 @@ namespace Unicam.Paradigmi.Application.Models
         public Corso ToEntity()
         {
             var corso = new Corso();
-            corso.IdDocente=IdDocente;
-            corso.NomeCorso=NomeCorso;
+            corso.IdDocente = IdDocente;
+            corso.NomeCorso = NomeCorso;
             corso.NOre = NOre;
             return corso;
         }

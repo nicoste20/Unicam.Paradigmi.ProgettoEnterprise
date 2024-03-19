@@ -12,7 +12,7 @@ namespace Unicam.Paradigmi.Web.Controllers
     public class CorsoController :ControllerBase
     {
 
-
+        [Authorize(Roles = "Docente")]
         [HttpPost]
         [Route("new")]
         public async Task<IActionResult> CreateCorso(CreateCorsoRequest request)
@@ -20,12 +20,22 @@ namespace Unicam.Paradigmi.Web.Controllers
             return Ok();
         }
 
-
+        [Authorize(Roles = "Docente")]
         [HttpDelete]
         [Route("delete")]
         public async Task<IActionResult> DeleteCorso(DeleteCorsoRequest request)
         {
             return Ok();
         }
+
+
+        [Authorize(Roles = "Studente")]
+        [HttpPost]
+        [Route("new")]
+        public async Task<IActionResult> NomeMetodo(CreateCorsoRequest request)
+        {
+            return Ok();
+        }
+
     }
 }

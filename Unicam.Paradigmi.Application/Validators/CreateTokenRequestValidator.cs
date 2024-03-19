@@ -17,7 +17,9 @@ namespace Unicam.Paradigmi.Application.Validators
                 .NotEmpty()
                 .WithMessage("Il campo username è obbligatorio")
                 .NotNull()
-                .WithMessage("Il campo username non può essere nullo");
+                .WithMessage("Il campo username non può essere nullo")
+                .EmailAddress()
+                .WithMessage("Il campo username deve essere un indirizzo email valido");
 
             RuleFor(r => r.Password)
                 .NotEmpty()

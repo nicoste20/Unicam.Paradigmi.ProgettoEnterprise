@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Models.Context
 {
@@ -12,7 +13,14 @@ namespace Unicam.Paradigmi.Models.Context
         public MyDbContext() : base() { }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
-        //TODO: aggiungere i DbSet per le varie classi
+        //DbSet per le varie classi
+        public DbSet<Corso> Corsi { get; set; }
+
+        public DbSet<Calendario> Calendari { get; set; }
+
+        public DbSet<Presenza> Presenze { get; set; }
+
+        public DbSet<Utente> Utenti { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

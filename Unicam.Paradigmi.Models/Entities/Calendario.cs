@@ -15,6 +15,6 @@ namespace Unicam.Paradigmi.Models.Entities
         public string? Luogo {  get; set; }
         public ModalitaErogazione Modalita {  get; set; }
         
-        public virtual Corso? Corso { get; set; }
+        public virtual Corso? Corso { get; set; } //Usiamo virtual per il lazy loading
     }
 }

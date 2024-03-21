@@ -9,9 +9,6 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
 {
     public  class CorsoDto
     {
-
-
-
         public int IdCorso { get; set; }
         public int IdDocente { get; set; }
         public string? NomeCorso { get; set; }

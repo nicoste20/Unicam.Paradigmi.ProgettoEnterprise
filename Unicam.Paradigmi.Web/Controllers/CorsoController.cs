@@ -11,13 +11,13 @@ namespace Unicam.Paradigmi.Web.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CorsoController :ControllerBase
     {
-
+        /*
         [Authorize(Roles = "Docente")]
         [HttpPost]
         [Route("new")]
-        public async Task<IActionResult> CreateCorso(CreateCorsoRequest request)
+        public Task<IActionResult> CreateCorso(CreateCorsoRequest request)
         {
-            return Ok();
+            return Ok("");
         }
 
         [Authorize(Roles = "Docente")]
@@ -36,6 +36,6 @@ namespace Unicam.Paradigmi.Web.Controllers
         {
             return Ok();
         }
-
+        */
     }
 }

@@ -13,7 +13,7 @@ namespace Unicam.Paradigmi.Application.Validators
     {
         public CreateTokenRequestValidator()
         {
-            RuleFor(r => r.Username)
+            RuleFor(r => r.Email)
                 .NotEmpty()
                 .WithMessage("Il campo username è obbligatorio")
                 .NotNull()

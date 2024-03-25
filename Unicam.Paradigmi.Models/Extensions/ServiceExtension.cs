@@ -21,6 +21,7 @@ namespace Unicam.Paradigmi.Models.Extensions
             }); //aggiunta del db
 
             services.AddScoped<UtenteRepository>();
+            services.AddScoped<CorsoRepository>();
             return services;
         }
     }

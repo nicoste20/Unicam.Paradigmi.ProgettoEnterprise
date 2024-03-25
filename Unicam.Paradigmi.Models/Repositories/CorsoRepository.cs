@@ -8,7 +8,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Models.Repositories
 {
-    public class CorsoRepository : GenericRepository<CorsoRepository>
+    public class CorsoRepository : GenericRepository<Corso>
     {
 
         public CorsoRepository(MyDbContext ctx) : base(ctx)

@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Unicam.Paradigmi.Application.Abstractions.Services;
+using Unicam.Paradigmi.Application.Factories;
+using Unicam.Paradigmi.Application.Models.Dtos;
 using Unicam.Paradigmi.Application.Models.Requests;
+using Unicam.Paradigmi.Application.Models.Responses;
 
 
 namespace Unicam.Paradigmi.Web.Controllers
@@ -11,15 +15,29 @@ namespace Unicam.Paradigmi.Web.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CorsoController :ControllerBase
     {
-        /*
+
+        private readonly ICorsoService _corsoService;
+
+        public CorsoController(ICorsoService corsoService)
+        {
+            _corsoService = corsoService;
+        }
+
         [Authorize(Roles = "Docente")]
         [HttpPost]
         [Route("new")]
-        public Task<IActionResult> CreateCorso(CreateCorsoRequest request)
+        public IActionResult CreateCorso(CreateCorsoRequest request)
         {
-            return Ok("");
+            var corso = request.ToEntity();
+            _corsoService.AddCorso(corso);
+            var response = new CreateCorsoResponse();
+            response.Corso = new CorsoDto(corso);
+            return Ok(ResponseFactory.WithSuccess(response));
         }
 
+
+        /*
+        
         [Authorize(Roles = "Docente")]
         [HttpDelete]
         [Route("delete")]

@@ -10,10 +10,10 @@ namespace Unicam.Paradigmi.Models.Entities
     {
         public int IdCorso { get; set; }
         public int IdDocente { get; set; }
-        public string? NomeCorso { get; set; }
+        public string NomeCorso { get; set; }
         public int NOre { get; set; }
 
-        public virtual ICollection<Utente>? Docenti {  get; set; } 
-        public virtual ICollection<Calendario>? CalendarioLezioni { get; set; }
+        public ICollection<Utente> Docenti {  get; set; } = null!;
+        public ICollection<Calendario> CalendarioLezioni { get; set; } = null!;
     }
 }

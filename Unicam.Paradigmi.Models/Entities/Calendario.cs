@@ -12,9 +12,9 @@ namespace Unicam.Paradigmi.Models.Entities
         public int IdCorso { get; set; }
         public DateTime DataOraInizio { get; set; }
         public DateTime DataOraFine { get; set; }
-        public string? Luogo {  get; set; }
+        public string Luogo {  get; set; }
         public ModalitaErogazione Modalita {  get; set; }
         
-        public virtual Corso? Corso { get; set; } //Usiamo virtual per il lazy loading
+        public Corso Corso { get; set; } = null!;
     }
 }

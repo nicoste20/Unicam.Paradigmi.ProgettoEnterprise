@@ -17,7 +17,8 @@ namespace Unicam.Paradigmi.Models.Extensions
         {
 
             services.AddDbContext<MyDbContext>(conf => {
-                conf.UseSqlServer(configuration.GetConnectionString("MyDbContext")); //prende la stringa di connessione dal json
+                //prende la stringa di connessione dal json
+                conf.UseSqlServer(configuration.GetConnectionString("MyDbContext"));
             }); //aggiunta del db
 
             services.AddScoped<UtenteRepository>();

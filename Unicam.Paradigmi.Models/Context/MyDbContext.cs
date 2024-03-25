@@ -10,8 +10,15 @@ namespace Unicam.Paradigmi.Models.Context
 {
     public class MyDbContext : DbContext
     {
-        public MyDbContext() : base() { }
-        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
+        public MyDbContext() : base()
+        {
+
+        }
+
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
+        {
+
+        }
 
         //DbSet per le varie classi
         public DbSet<Corso> Corsi { get; set; }
@@ -22,7 +29,7 @@ namespace Unicam.Paradigmi.Models.Context
 
         public DbSet<Utente> Utenti { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) metodo di configurazione di default
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -30,11 +37,13 @@ namespace Unicam.Paradigmi.Models.Context
                     .UseSqlServer("data source=localhost;Initial catalog=Paradigmi_Progetto;User Id=paradigmi;Password=paradigmi;TrustServerCertificate=True");
 
             }
-        }
+        }*/
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) //metodo invocato automaticamente quando istanziamo EF
+        //Metodo invocato automaticamente quando istanziamo EF
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly); //applica tutte le configurazioni che trovi in assembly che prendi dove sta il contesto
+            //Applica tutte le configurazioni che trovi in assembly
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);
         }

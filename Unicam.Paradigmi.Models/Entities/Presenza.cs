@@ -12,8 +12,8 @@ namespace Unicam.Paradigmi.Models.Entities
         public int IdPresenza { get; set; }
         public DateTime DataOraInizio { get; set; }
         public DateTime DataOraFine {  get; set; }
-        public string? IdAlunno { get; set; }
+        public string IdAlunno { get; set; }
 
-       public virtual Utente? PresenzaAlunno { get; set; }
+       public Utente PresenzaAlunno { get; set; } = null!;
     }
 }

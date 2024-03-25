@@ -9,13 +9,22 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
 {
     public class PresenzaDto
     {
+        public PresenzaDto() { }
 
+        public PresenzaDto(Presenza presenza)
+        {
+            IdPresenza = presenza.IdPresenza;
+            DataOraInizio = presenza.DataOraInizio;
+            DataOraFine = presenza.DataOraFine;
+            IdAlunno = presenza.IdAlunno;
+            PresenzaAlunno = presenza.PresenzaAlunno;
+        }
 
         public int IdPresenza { get; set; }
         public DateTime DataOraInizio { get; set; }
         public DateTime DataOraFine { get; set; }
-        public string? IdAlunno { get; set; }
+        public string IdAlunno { get; set; }
 
-        public virtual Utente? PresenzaAlunno { get; set; } //TODO:SONO DA METTERE?
+        public Utente PresenzaAlunno { get; set; } //TODO:SONO DA METTERE?
     }
 }

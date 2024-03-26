@@ -12,14 +12,14 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
         //mappa entità
         public CalendarioDto() { }
 
-        public CalendarioDto(Calendario calendario)
+        public CalendarioDto(Lezione lezione)
         {
-            IdCalendario = calendario.IdCalendario;
-            IdCorso= calendario.IdCorso;
-            DataOraInizio= calendario.DataOraInizio;
-            DataOraFine= calendario.DataOraFine;
-            Luogo = calendario.Luogo;
-            Modalita = calendario.Modalita;
+            IdCalendario = lezione.IdCalendario;
+            IdCorso= lezione.IdCorso;
+            DataOraInizio= lezione.DataOraInizio;
+            DataOraFine= lezione.DataOraFine;
+            Luogo = lezione.Luogo;
+            Modalita = lezione.Modalita;
         }
 
         public int IdCalendario { get; set; }

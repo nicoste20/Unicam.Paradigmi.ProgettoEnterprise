@@ -16,10 +16,13 @@ namespace Unicam.Paradigmi.Models.Configurations
             builder.ToTable("Presenze");
             builder.HasKey(k => k.IdPresenza);
 
-            // uno-a-molti con Alunno
-            builder.HasOne(o => o.PresenzaAlunno)
-                .WithMany(o => o.Presenze)
-                .HasForeignKey(o => o.IdAlunno);
+            builder.HasOne(p => p.Alunno)
+                .WithMany()
+                .HasForeignKey(p => p.IdAlunno);
+
+            builder.HasOne(p => p.Lezione)
+                .WithMany(l => l.Presenze)
+                .HasForeignKey(p => p.IdLezione);
         }
     }
 }

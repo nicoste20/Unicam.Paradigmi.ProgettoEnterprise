@@ -17,7 +17,7 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
             DataOraInizio = presenza.DataOraInizio;
             DataOraFine = presenza.DataOraFine;
             IdAlunno = presenza.IdAlunno;
-            PresenzaAlunno = presenza.PresenzaAlunno;
+            PresenzaAlunno = presenza.Alunno;
         }
 
         public int IdPresenza { get; set; }

@@ -23,13 +23,13 @@ namespace Unicam.Paradigmi.Models.Context
         //DbSet per le varie classi
         public DbSet<Corso> Corsi { get; set; }
 
-        public DbSet<Calendario> Calendari { get; set; }
+        public DbSet<Lezione> Calendari { get; set; }
 
         public DbSet<Presenza> Presenze { get; set; }
 
         public DbSet<Utente> Utenti { get; set; }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) metodo di configurazione di default
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -37,7 +37,7 @@ namespace Unicam.Paradigmi.Models.Context
                     .UseSqlServer("data source=localhost;Initial catalog=Paradigmi_Progetto;User Id=paradigmi;Password=paradigmi;TrustServerCertificate=True");
 
             }
-        }*/
+        }
 
         //Metodo invocato automaticamente quando istanziamo EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)

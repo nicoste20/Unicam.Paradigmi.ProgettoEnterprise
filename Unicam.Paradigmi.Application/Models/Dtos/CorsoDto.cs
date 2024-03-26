@@ -27,7 +27,7 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
         public string NomeCorso { get; set; }
         public int NOre { get; set; }
         public ICollection<Utente> Docenti { get; set; }
-        public ICollection<Calendario> CalendarioLezioni { get; set; }
+        public ICollection<Lezione> CalendarioLezioni { get; set; }
 
     }
 }

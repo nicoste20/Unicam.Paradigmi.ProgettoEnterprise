@@ -13,7 +13,7 @@ namespace Unicam.Paradigmi.Models.Entities
         public string NomeCorso { get; set; }
         public int NOre { get; set; }
 
-        public ICollection<Utente> Docenti {  get; set; } = null!;
-        public ICollection<Calendario> CalendarioLezioni { get; set; } = null!;
+        public Utente Docente {  get; set; } = null!;
+        public ICollection<Lezione> CalendarioLezioni { get; set; } = null!;
     }
 }

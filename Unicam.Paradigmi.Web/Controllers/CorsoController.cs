@@ -23,7 +23,6 @@ namespace Unicam.Paradigmi.Web.Controllers
             _corsoService = corsoService;
         }
 
-        [Authorize(Roles = "Docente")]
         [HttpPost]
         [Route("new")]
         public IActionResult CreateCorso(CreateCorsoRequest request)

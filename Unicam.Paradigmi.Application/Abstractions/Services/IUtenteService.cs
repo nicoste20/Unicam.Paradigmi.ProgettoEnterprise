@@ -11,6 +11,6 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
     {
         Utente GetUserByEmail(string email);
         bool VerifyPassword(Utente user, string password);
-
+        bool AddUtente(Utente utente);
     }
 }

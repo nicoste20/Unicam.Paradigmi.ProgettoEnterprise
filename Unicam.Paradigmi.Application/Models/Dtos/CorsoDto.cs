@@ -17,8 +17,8 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
             IdDocente = corso.IdDocente;
             NomeCorso = corso.NomeCorso;
             NOre = corso.NOre;
-            Docenti = corso.Docenti;
-            CalendarioLezioni = corso.CalendarioLezioni;
+            Docente = corso.Docente;
+            CalendariLezioni = corso.CalendariLezioni;
         }
 
 
@@ -26,8 +26,8 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
         public int IdDocente { get; set; }
         public string NomeCorso { get; set; }
         public int NOre { get; set; }
-        public ICollection<Utente> Docenti { get; set; }
-        public ICollection<Lezione> CalendarioLezioni { get; set; }
+        public Utente Docente { get; set; }
+        public ICollection<Lezione> CalendariiLezioni { get; set; }
 
     }
 }

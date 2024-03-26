@@ -7,14 +7,14 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Dtos
 {
-    public class CalendarioDto
+    public class LezioneDto
     {
         //mappa entità
-        public CalendarioDto() { }
+        public LezioneDto() { }
 
-        public CalendarioDto(Lezione lezione)
+        public LezioneDto(Lezione lezione)
         {
-            IdCalendario = lezione.IdCalendario;
+            IdCalendario = lezione.IdLezione;
             IdCorso= lezione.IdCorso;
             DataOraInizio= lezione.DataOraInizio;
             DataOraFine= lezione.DataOraFine;

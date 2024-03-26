@@ -14,30 +14,29 @@ namespace Unicam.Paradigmi.Web.Controllers
     public class TokenController : Controller
     {
 
-        //TODO:IMPLEMENTARE GLI UTENTI 
         private readonly ITokenService _tokenService;
 
-        private readonly IUtenteService _utenteService;
-
-
-        public TokenController(ITokenService tokenService, IUtenteService userService)
+        public TokenController(ITokenService tokenService)
         {
             _tokenService = tokenService;
-            _utenteService = userService;
         }
 
 
         [HttpPost]
-        [Route("create")]
+        [Route("login")]
         public IActionResult Create(CreateTokenRequest request)
         {
-            string token = _tokenService.CreateToken(request);
+            string token = _tokenService.CreateToken(request.Email,request.Password);
 
-            return Ok(
-               ResponseFactory.WithSuccess(
-                   new CreateTokenResponse(token)
-                   )
-            );
+            if (token != null)
+            {
+                return Ok(
+                    ResponseFactory.WithSuccess(
+                        new CreateTokenResponse(token)
+                    )
+                );
+            }
+            return BadRequest(ResponseFactory.WithError("Email o Password errata"));
         }
     
 

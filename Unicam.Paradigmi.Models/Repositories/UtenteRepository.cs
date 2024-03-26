@@ -38,13 +38,14 @@ public class UtenteRepository : GenericRepository<Utente>
 
     }
 
-    public bool VerifyPassword(Utente user, string password)
+    public async Task<Utente> GetUtenteByEmailPasswordAsync(string email, string password)
     {
-        if(user.Password == password)
+        var utente =  GetUserByEmail(email);
+        if (utente != null && utente.Password.Equals(password))
         {
-            return true;
+            return utente;
         }
-        return false;
+        return null;
     }
    
 }

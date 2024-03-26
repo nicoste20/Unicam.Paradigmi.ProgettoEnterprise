@@ -10,7 +10,7 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
     public interface IUtenteService
     {
         Utente GetUserByEmail(string email);
-        bool VerifyPassword(Utente user, string password);
+        Utente GetUserByEmailAndPassword(string email, string password);
         bool AddUtente(Utente utente);
     }
 }

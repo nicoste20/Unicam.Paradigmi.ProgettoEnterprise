@@ -9,6 +9,6 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
 {
     public interface ITokenService
     {
-        string CreateToken(CreateTokenRequest request);
+        string CreateToken(string mail, string password);
     }
 }

@@ -12,8 +12,6 @@ namespace Unicam.Paradigmi.Web.Controllers
     [Route("api/v1/[controller]")]
     public class UtenteController : ControllerBase
     {
-        //creazione utente 
-
         private readonly IUtenteService _utenteService;
 
         public UtenteController(IUtenteService utenteService)
@@ -22,17 +20,19 @@ namespace Unicam.Paradigmi.Web.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
+        [Route("Registra")]
         public IActionResult Create(CreateUtenteRequest request) {
+
             var utente = request.ToEntity();
-            var aggiuntaAvvenuta = _utenteService.AddUtente(utente);
-            if (aggiuntaAvvenuta == false)
+
+            if (_utenteService.AddUtente(utente))
             {
                 var response = new CreateUtenteResponse();
                 response.utente = new UtenteDto(utente);
                 return Ok(ResponseFactory.WithSuccess(response));
             }
-            return Ok(ResponseFactory.WithError("Utente non aggiunto"));
+
+            return BadRequest(ResponseFactory.WithError("Utente non aggiunto"));
         }
     }
 }

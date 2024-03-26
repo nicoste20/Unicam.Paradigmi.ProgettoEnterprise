@@ -25,7 +25,7 @@ namespace Unicam.Paradigmi.Application.Services
 
         public bool AddUtente(Utente utente)
         {
-            if(_utenteRepository.GetUserByEmail(utente.Email)!= null)
+            if(_utenteRepository.GetUserByEmail(utente.Email) != null)
             {
                 _utenteRepository.Save();
                 return true;
@@ -35,7 +35,7 @@ namespace Unicam.Paradigmi.Application.Services
 
         public Utente GetUserByEmailAndPassword(string email, string password)
         {
-            throw new NotImplementedException();
+            return _utenteRepository.GetUserByEmailPassword(email, password);
         }
     }
 }

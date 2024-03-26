@@ -38,9 +38,9 @@ public class UtenteRepository : GenericRepository<Utente>
 
     }
 
-    public async Task<Utente> GetUtenteByEmailPasswordAsync(string email, string password)
+    public Utente GetUserByEmailPassword(string email, string password)
     {
-        var utente =  GetUserByEmail(email);
+        var utente = GetUserByEmail(email);
         if (utente != null && utente.Password.Equals(password))
         {
             return utente;

@@ -32,6 +32,27 @@ namespace Unicam.Paradigmi.Application.Validators
                 .RegEx("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+{}\\[\\]:;<>,.?~\\\\-]).{6,}$"
                 , "Il campo password deve essere lungo almeno 6 caratteri e deve contenere almeno un carattere maiuscolo, uno minuscolo, un numero e un carattere speciale"
                 );
+            
+            RuleFor(r => r.Nome)
+                .NotEmpty()
+                .WithMessage("Il campo nome è obbligatorio")
+                .NotNull()
+                .WithMessage("Il campo nome non può essere nullo")
+                .MinimumLength(4)
+                .WithMessage("Il campo nome deve contenere almeno 4 caratteri")
+                .Matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]*$")
+                .WithMessage("Il campo nome può contenere solo lettere e spazi");
+
+            RuleFor(r => r.Cognome)
+                .NotEmpty()
+                .WithMessage("Il campo cognome è obbligatorio")
+                .NotNull()
+                .WithMessage("Il campo cognome non può essere nullo")
+                .MinimumLength(4)
+                .WithMessage("Il campo cognome deve contenere almeno 4 caratteri")
+                .Matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]*$")
+                .WithMessage("Il campo cognome può contenere solo lettere e spazi");
+
         }
     }
 }

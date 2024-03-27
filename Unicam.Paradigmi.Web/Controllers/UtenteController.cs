@@ -20,19 +20,22 @@ namespace Unicam.Paradigmi.Web.Controllers
         }
 
         [HttpPost]
-        [Route("Registra")]
+        [Route("CreaUtente")]
         public IActionResult Create(CreateUtenteRequest request) {
 
-            var utente = request.ToEntity();
-
-            if (_utenteService.AddUtente(utente))
+            if(_utenteService.GetUserByEmail(request.Email) != null)
             {
-                var response = new CreateUtenteResponse();
-                response.utente = new UtenteDto(utente);
-                return Ok(ResponseFactory.WithSuccess(response));
+                return BadRequest(ResponseFactory.WithError("Utente non aggiunto, email già presente nel sistema"));
             }
 
-            return BadRequest(ResponseFactory.WithError("Utente non aggiunto"));
+            var utente = request.ToEntity();
+            _utenteService.AddUtente(utente);
+
+            var response = new CreateUtenteResponse();
+            response.utente = new UtenteDto(utente);
+            return Ok(ResponseFactory.WithSuccess(response));
+            
+
         }
     }
 }

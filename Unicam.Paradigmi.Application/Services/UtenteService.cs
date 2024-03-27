@@ -23,19 +23,15 @@ namespace Unicam.Paradigmi.Application.Services
             return _utenteRepository.GetUserByEmail(email);
         }
 
-        public bool AddUtente(Utente utente)
+        public void AddUtente(Utente utente)
         {
-            if(_utenteRepository.GetUserByEmail(utente.Email) != null)
-            {
-                _utenteRepository.Save();
-                return true;
-            }
-            return false;
+            _utenteRepository.Aggiungi(utente);
+            _utenteRepository.Save();
         }
 
         public Utente GetUserByEmailAndPassword(string email, string password)
         {
-            return _utenteRepository.GetUserByEmailPassword(email, password);
+            return _utenteRepository.GetUserByEmailAndPassword(email, password);
         }
     }
 }

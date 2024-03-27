@@ -18,27 +18,10 @@ public class UtenteRepository : GenericRepository<Utente>
 
     public Utente GetUserByEmail(string email)
     {
-        //email fornita non vuota o nulla
-        if (string.IsNullOrEmpty(email))
-        {
-            throw new ArgumentException("L'email non può essere vuota o nulla", nameof(email));
-        }
-
-        // Query per ottenere l'utente corrispondente all'email fornita
-        var user = _ctx.Utenti.FirstOrDefault(x => x.Email == email);
-
-        //utente non trovato
-        if (user == null)
-        {
-            throw new InvalidOperationException("Nessun utente trovato con l'email specificata.");
-        }
-
-        // Restituisci l'utente trovato
-        return user;
-
+        return _ctx.Utenti.Where(x => x.Email == email.ToLower()).FirstOrDefault();
     }
 
-    public Utente GetUserByEmailPassword(string email, string password)
+    public Utente GetUserByEmailAndPassword(string email, string password)
     {
         var utente = GetUserByEmail(email);
         if (utente != null && utente.Password.Equals(password))

@@ -53,7 +53,7 @@ namespace Unicam.Paradigmi.Web.Extensions
         });
 
           //  services.AddValidatorsFromAssemblyContaining<CreateUtenteRequestValidator>();
-            services.AddValidatorsFromAssemblyContaining<CreateTokenRequestValidator>(); // register validators
+            // services.AddValidatorsFromAssemblyContaining<CreateTokenRequestValidator>(); // register validators
             services.AddFluentValidationAutoValidation(); //TODO: chiedere se controlla token ? 
 
             var jwtAuthenticationOption = new JwtAuthenticationOption();

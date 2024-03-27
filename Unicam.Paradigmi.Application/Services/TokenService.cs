@@ -22,10 +22,10 @@ namespace Unicam.Paradigmi.Application.Services
 
         private readonly IUtenteService _utenteService;
 
-        public TokenService(JwtAuthenticationOption jwtAuthOption, IUtenteService _utenteService)
+        public TokenService(IOptions<JwtAuthenticationOption> jwtAuthOption, IUtenteService utenteService)
         {
-            _jwtAuthOption = jwtAuthOption;
-            _utenteService = _utenteService;
+            _jwtAuthOption = jwtAuthOption.Value;
+            _utenteService = utenteService;
         }
 
         public string CreateToken(string email, string password) { 

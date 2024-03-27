@@ -13,12 +13,13 @@ namespace Unicam.Paradigmi.Application.Extensions
 
             services.AddValidatorsFromAssembly(
                 AppDomain.CurrentDomain.GetAssemblies()         //ottiene l'assembly della classe che contiene i validator
-                .SingleOrDefault(assembly => assembly.GetName().Name == "Unicam.Paradigmi.Application")); 
+                .SingleOrDefault(assembly => assembly.GetName().Name == "Unicam.Paradigmi.Application"));
 
             //aggiunge istanza del servizio
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<ICorsoService, CorsoService>();
+           
+            //services.AddScoped<ICorsoService, CorsoService>();
 
             return services;
         }

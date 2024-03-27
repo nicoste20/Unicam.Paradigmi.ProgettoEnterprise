@@ -34,6 +34,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             int idUtente = _identityService.GetUserIdentity();
             var corso = request.ToEntity();
             corso.IdDocente = idUtente;
+            //aggiungere il corso.Docente
             _corsoService.AddCorso(corso);
             var response = new CreateCorsoResponse();
             response.Corso = new CorsoDto(corso);

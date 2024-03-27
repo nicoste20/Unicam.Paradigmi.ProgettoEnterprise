@@ -14,7 +14,7 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
 
         public LezioneDto(Lezione lezione)
         {
-            IdCalendario = lezione.IdLezione;
+            IdLezione = lezione.IdLezione;
             IdCorso= lezione.IdCorso;
             DataOraInizio= lezione.DataOraInizio;
             DataOraFine= lezione.DataOraFine;
@@ -22,7 +22,7 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
             Modalita = lezione.Modalita;
         }
 
-        public int IdCalendario { get; set; }
+        public int IdLezione { get; set; }
         public int IdCorso { get; set; }
         public DateTime DataOraInizio { get; set; }
         public DateTime DataOraFine { get; set; }

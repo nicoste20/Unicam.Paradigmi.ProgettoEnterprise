@@ -23,7 +23,7 @@ namespace Unicam.Paradigmi.Models.Context
         //DbSet per le varie classi
         public DbSet<Corso> Corsi { get; set; }
 
-        public DbSet<Lezione> Calendari { get; set; }
+        public DbSet<Lezione> Lezioni { get; set; }
 
         public DbSet<Presenza> Presenze { get; set; }
 

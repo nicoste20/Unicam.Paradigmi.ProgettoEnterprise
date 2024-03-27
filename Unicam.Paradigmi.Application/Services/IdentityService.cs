@@ -27,7 +27,7 @@ namespace Unicam.Paradigmi.Application.Services
             }
 
             // Trova il claim con il tipo "id"
-            var idClaim = userIdentity.Claims.FirstOrDefault(c => c.Type == "id");
+            var idClaim = userIdentity.Claims.FirstOrDefault(c => c.Type == "Id");
 
             // Verifica se il claim è stato trovato
             if (idClaim == null)

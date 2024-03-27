@@ -12,12 +12,7 @@ namespace Unicam.Paradigmi.Application.Validators
     {
         public CreateCorsoRequestValidator()
         {
-            RuleFor(c => c.IdDocente)
-                .NotEmpty()
-                .WithMessage("Il campo IdDocente è obbligatorio")
-                .GreaterThan(0)
-                .WithMessage("Il campo IdDocente deve essere maggiore di 0");
-
+           
             RuleFor(c => c.NomeCorso)
                 .NotEmpty()
                 .WithMessage("Il campo NomeCorso è obbligatorio")

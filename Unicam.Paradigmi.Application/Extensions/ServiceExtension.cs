@@ -23,6 +23,7 @@ namespace Unicam.Paradigmi.Application.Extensions
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICorsoService, CorsoService>();
+            services.AddScoped<ILezioneService, LezioneService>();
 
             return services;
         }

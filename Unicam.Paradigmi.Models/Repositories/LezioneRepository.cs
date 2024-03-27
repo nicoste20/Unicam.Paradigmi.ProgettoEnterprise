@@ -8,10 +8,10 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Models.Repositories
 {
-    public class CalendarioRepository : GenericRepository<Lezione>
+    public class LezioneRepository : GenericRepository<Lezione>
     {
 
-        public CalendarioRepository(MyDbContext ctx) : base(ctx)
+        public LezioneRepository(MyDbContext ctx) : base(ctx)
         {
         }
 

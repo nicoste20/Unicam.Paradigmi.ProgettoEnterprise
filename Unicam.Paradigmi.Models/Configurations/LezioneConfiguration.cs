@@ -9,7 +9,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Models.Configurations
 {
-    public class LezioniConfiguration : IEntityTypeConfiguration<Lezione>
+    public class LezioneConfiguration : IEntityTypeConfiguration<Lezione>
     {
         public void Configure(EntityTypeBuilder<Lezione> builder)
         {

@@ -14,7 +14,7 @@ namespace Unicam.Paradigmi.Models.Configurations
         public void Configure(EntityTypeBuilder<Utente> builder)
         {
             builder.ToTable("Utenti");
-            builder.HasKey(k => k.Email);
+            builder.HasKey(k => k.IdUtente);
 
             // uno-a-molti con Presenze
             builder.HasMany(a => a.Presenze)

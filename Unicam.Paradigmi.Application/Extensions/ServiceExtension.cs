@@ -18,8 +18,7 @@ namespace Unicam.Paradigmi.Application.Extensions
             //aggiunge istanza del servizio
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
-           
-            //services.AddScoped<ICorsoService, CorsoService>();
+            services.AddScoped<ICorsoService, CorsoService>();
 
             return services;
         }

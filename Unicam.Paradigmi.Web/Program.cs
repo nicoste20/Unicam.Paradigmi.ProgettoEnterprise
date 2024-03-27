@@ -1,11 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Extensions;
-using Unicam.Paradigmi.Application.Options;
-using Unicam.Paradigmi.Application.Services;
 using Unicam.Paradigmi.Models.Extensions;
 using Unicam.Paradigmi.Web.Extensions;
 

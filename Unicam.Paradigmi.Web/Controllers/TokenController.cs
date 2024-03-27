@@ -38,8 +38,6 @@ namespace Unicam.Paradigmi.Web.Controllers
             }
             return BadRequest(ResponseFactory.WithError("Email o Password errata"));
         }
-    
-
         
     }
 }

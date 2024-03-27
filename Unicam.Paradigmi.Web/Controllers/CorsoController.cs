@@ -47,8 +47,8 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("delete")]
         public IActionResult DeleteCorso(DeleteCorsoRequest request)
         {
-
-            return Ok();
+            _corsoService.Delete(request.IdCorso);
+            return Ok(ResponseFactory.WithSuccess(Response));
         }
         
     }

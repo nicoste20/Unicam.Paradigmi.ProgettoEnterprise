@@ -9,7 +9,8 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
 {
     public interface ICorsoService
     {
-        List<Corso> GetCorso();
+        public Corso GetCorso(int id);
         void AddCorso(Corso corso);
+        public void Delete(int id);
     }
 }

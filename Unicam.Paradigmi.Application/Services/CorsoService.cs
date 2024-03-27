@@ -20,14 +20,20 @@ namespace Unicam.Paradigmi.Application.Services
 
 
         //metodi per le chiamate web api con le loro logiche
-        public List<Corso> GetCorso()
+        public Corso GetCorso(int id)
         {
-            return new List<Corso>();
+            return _corsoRepository.Ottieni(id);
         }
 
         public void AddCorso(Corso corso)
         {
             _corsoRepository.Aggiungi(corso);
+            _corsoRepository.Save();
+        }
+
+        public void Delete(int id)
+        {
+            _corsoRepository.Elimina(id);
             _corsoRepository.Save();
         }
     }

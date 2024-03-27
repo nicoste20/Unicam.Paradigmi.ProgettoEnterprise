@@ -36,5 +36,8 @@ namespace Unicam.Paradigmi.Web.Controllers
             response.Lezione = new LezioneDto(lezione);
             return Ok(ResponseFactory.WithSuccess(response));
         }
+
+
+       
     }
 }

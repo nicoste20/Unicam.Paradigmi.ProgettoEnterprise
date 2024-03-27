@@ -42,14 +42,14 @@ namespace Unicam.Paradigmi.Web.Controllers
         }
 
 
-        /*
-        [Authorize(Roles = "Docente")]
+        
         [HttpDelete]
         [Route("delete")]
-        public async Task<IActionResult> DeleteCorso(DeleteCorsoRequest request)
+        public IActionResult DeleteCorso(DeleteCorsoRequest request)
         {
+
             return Ok();
         }
-        */
+        
     }
 }

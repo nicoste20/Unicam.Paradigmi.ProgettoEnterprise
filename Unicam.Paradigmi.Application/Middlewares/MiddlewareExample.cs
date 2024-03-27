@@ -26,7 +26,6 @@ namespace Unicam.Paradigmi.Application.Middlewares
         public async Task Invoke(HttpContext context,
             IUtenteService utenteService,
             ICorsoService corsoService,
-            ILezioneService lezioneService,
             IConfiguration configuration)
         {
             context.RequestServices.GetRequiredService<IUtenteService>();

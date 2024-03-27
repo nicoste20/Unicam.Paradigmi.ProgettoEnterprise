@@ -23,6 +23,7 @@ namespace Unicam.Paradigmi.Models.Extensions
 
             services.AddScoped<UtenteRepository>();
             services.AddScoped<CorsoRepository>();
+            services.AddScoped<LezioneRepository>();
             return services;
         }
     }

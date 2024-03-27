@@ -17,13 +17,15 @@ namespace Unicam.Paradigmi.Models.Configurations
             builder.HasKey(k => k.IdLezione);
 
 
+            builder.Property(p => p.Modalita)
+               .HasColumnName("Modalita")
+               .HasConversion<int>();
+
             builder.HasOne(l => l.Corso)
                 .WithMany(c => c.CalendarioLezioni)
                 .HasForeignKey(l => l.IdCorso);
 
-            builder.HasMany(l => l.Presenze)
-                .WithOne(p => p.Lezione)
-                .HasForeignKey(p => p.IdLezione);
+            
         }
     }
 }

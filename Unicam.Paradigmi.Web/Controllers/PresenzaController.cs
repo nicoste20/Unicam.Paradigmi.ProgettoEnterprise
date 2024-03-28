@@ -78,5 +78,24 @@ namespace Unicam.Paradigmi.Web.Controllers
             }
             return false;
         }
+
+        [HttpPost]
+        [Route("search")]
+        public IActionResult SearchPresenze(SearchPresenzeRequest request)
+        {
+            int totalNum = 0;
+            var search = _presenzaService.Search(request.courseName, out totalNum, request.studentSurname, request.lecturerSurname,
+                request.lessonDate,request.page,request.pageSize);
+
+           var response = new SearchPresenzeResponse();
+           var pageFounded = (totalNum / (decimal)request.pageSize);
+           response.NumeroPagine = (int)Math.Ceiling(pageFounded);
+           response.Presenze = search.Select(s =>
+               new PresenzaDto(s)).ToList();
+
+           return Ok(ResponseFactory
+               .WithSuccess(response)
+           );
+        }
     }
 }

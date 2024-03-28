@@ -23,5 +23,10 @@ namespace Unicam.Paradigmi.Application.Services
             _lezioneRepository.Aggiungi(lezione);
             _lezioneRepository.Save();
         }
+
+        public Lezione GetLezioneById(int id)
+        {
+            return _lezioneRepository.Ottieni(id);
+        }
     }
 }

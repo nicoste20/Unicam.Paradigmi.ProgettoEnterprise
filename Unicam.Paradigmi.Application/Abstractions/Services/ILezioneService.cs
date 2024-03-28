@@ -10,5 +10,6 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
     public interface ILezioneService
     {
         void AddLezione(Lezione lezione);
+        Lezione GetLezioneById(int id);
     }
 }

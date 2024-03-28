@@ -20,9 +20,7 @@ namespace Unicam.Paradigmi.Models.Configurations
                 .WithMany()
                 .HasForeignKey(p => p.IdAlunno);
 
-            builder.HasOne(p => p.Lezione)
-                .WithMany(l => l.Presenze)
-                .HasForeignKey(p => p.IdLezione);
+            
         }
     }
 }

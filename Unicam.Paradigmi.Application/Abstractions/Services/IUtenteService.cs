@@ -12,5 +12,7 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
         Utente GetUserByEmail(string email);
         Utente GetUserByEmailAndPassword(string email, string password);
         void AddUtente(Utente utente);
+
+        Utente GetUserById(int id);
     }
 }

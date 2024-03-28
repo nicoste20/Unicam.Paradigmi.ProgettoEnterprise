@@ -14,17 +14,22 @@ namespace Unicam.Paradigmi.Application.Models.Dtos
         public PresenzaDto(Presenza presenza)
         {
             IdPresenza = presenza.IdPresenza;
+            IdAlunno = presenza.IdAlunno;
+            IdLezione = presenza.IdLezione;
             DataOraInizio = presenza.DataOraInizio;
             DataOraFine = presenza.DataOraFine;
-            IdAlunno = presenza.IdAlunno;
-            PresenzaAlunno = presenza.Alunno;
+            Alunno = presenza.Alunno;
+            Lezione = presenza.Lezione;
         }
 
         public int IdPresenza { get; set; }
+        public int IdAlunno { get; set; }
+        public int IdLezione { get; set; }
         public DateTime DataOraInizio { get; set; }
         public DateTime DataOraFine { get; set; }
-        public int IdAlunno { get; set; }
 
-        public Utente PresenzaAlunno { get; set; } //TODO:SONO DA METTERE?
+        //TODO:sono da mettere?
+        public Utente Alunno { get; set; } = null!;
+        public Lezione Lezione { get; set; } = null!;
     }
 }

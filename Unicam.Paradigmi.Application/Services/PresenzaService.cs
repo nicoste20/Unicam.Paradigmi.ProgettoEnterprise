@@ -20,7 +20,7 @@ public class PresenzaService : IPresenzaService
         return true;
     }
 
-    public bool RemovePresenza(int id)
+    public bool Delete(int id)
     {
         _presenzaRepository.Elimina(id);
         return true;

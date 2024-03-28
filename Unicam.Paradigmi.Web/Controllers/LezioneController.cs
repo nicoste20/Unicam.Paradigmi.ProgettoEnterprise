@@ -14,10 +14,13 @@ namespace Unicam.Paradigmi.Web.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LezioneController : ControllerBase
     {
+        private readonly ICorsoService _corsoService;
+
         private readonly ILezioneService _lezioneService;
 
-        public LezioneController(ILezioneService lezioneService)
+        public LezioneController(ICorsoService corsoService, ILezioneService lezioneService)
         {
+            _corsoService = corsoService;
             _lezioneService = lezioneService;
         }
 
@@ -25,16 +28,23 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("new")]
         public IActionResult CreateLezione(CreateLezioneRequest request)
         {
-            var lezione = request.ToEntity();
-            if(lezione == null)
+            if (_corsoService.GetCorso(request.IdCorso)!=null)
             {
-                return BadRequest(ResponseFactory.WithError("Lezione nulla"));
-            }
-            _lezioneService.AddLezione(lezione);
+                var lezione = request.ToEntity();
+                if (lezione == null)
+                {
+                    return BadRequest(ResponseFactory.WithError("Lezione nulla"));
+                }
+                _lezioneService.AddLezione(lezione);
 
-            var response = new CreateLezioneResponse();
-            response.Lezione = new LezioneDto(lezione);
-            return Ok(ResponseFactory.WithSuccess(response));
+                var response = new CreateLezioneResponse();
+                response.Lezione = new LezioneDto(lezione);
+                return Ok(ResponseFactory.WithSuccess(response));
+            }
+            else
+            {
+                return BadRequest("Corso non trovato");
+            }
         }
 
 

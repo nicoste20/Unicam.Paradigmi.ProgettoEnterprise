@@ -21,11 +21,11 @@ namespace Unicam.Paradigmi.Models.Configurations
                .HasColumnName("Modalita")
                .HasConversion<int>();
 
-            builder.HasOne(l => l.Corso)
-                .WithMany(c => c.CalendarioLezioni)
-                .HasForeignKey(l => l.IdCorso);
 
-            
+            builder.HasMany(l => l.Presenze)
+                 .WithOne(p => p.Lezione)
+                 .HasForeignKey(p => p.IdLezione);
+
         }
     }
 }

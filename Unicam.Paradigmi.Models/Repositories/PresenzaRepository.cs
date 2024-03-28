@@ -31,7 +31,7 @@ public class PresenzaRepository : GenericRepository<Presenza>
         {
             DateTime startDate = lessonDate.Value.Date;
             query = query.Include(p => p.Lezione)
-                .Where(p => p.Lezione.DataOraFine.Date.Equals(startDate));
+                .Where(p => p.Lezione.DataOraInizio.Date.Equals(startDate));
         }
 
         return query.Skip((page - 1) * pageSize)

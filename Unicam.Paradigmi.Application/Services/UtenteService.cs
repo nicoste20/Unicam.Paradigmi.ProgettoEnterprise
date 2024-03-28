@@ -33,5 +33,10 @@ namespace Unicam.Paradigmi.Application.Services
         {
             return _utenteRepository.GetUserByEmailAndPassword(email, password);
         }
+
+        public Utente GetUserById(int id)
+        {
+            return _utenteRepository.Ottieni(id);
+        }
     }
 }

@@ -8,6 +8,7 @@ public interface IPresenzaService
     Task<bool> AddPresenzaAsync(Presenza presenza);
     Task<bool> DeleteAsync(int idPresenza);
 
-    public List<Presenza> Search(string courseName, out int totalNum, string studentSurname = null, string lecturerSurname = null,
+    public Task<(List<Presenza>, int)> Search(string courseName, string studentSurname = null,
+        string lecturerSurname = null,
         DateTime? lessonDate = null, int page = 1, int pageSize = 10);
 }

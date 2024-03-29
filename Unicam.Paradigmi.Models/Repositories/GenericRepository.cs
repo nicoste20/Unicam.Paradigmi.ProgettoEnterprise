@@ -20,11 +20,6 @@ namespace Unicam.Paradigmi.Models.Repositories
             await _ctx.Set<T>().AddAsync(entity);
         }
 
-        public void Modifica(T entity)
-        {
-            _ctx.Entry(entity).State = EntityState.Modified;
-        }
-
         public async Task<T> OttieniAsync(object id)
         {
             return await _ctx.Set<T>().FindAsync(id);
@@ -32,7 +27,7 @@ namespace Unicam.Paradigmi.Models.Repositories
         public async Task Elimina(object id)
         {
             var entity = await OttieniAsync(id);
-             _ctx.Entry(entity).State = EntityState.Deleted;
+            _ctx.Set<T>().Remove(entity);
         }
         public async Task SaveAsync()
         {

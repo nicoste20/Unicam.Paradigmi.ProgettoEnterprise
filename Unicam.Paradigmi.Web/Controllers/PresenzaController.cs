@@ -82,10 +82,9 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("search")]
-        public IActionResult SearchPresenze(SearchPresenzeRequest request)
+        public async Task<IActionResult> SearchPresenze(SearchPresenzeRequest request)
         {
-            int totalNum = 0;
-            var search = _presenzaService.Search(request.courseName, out totalNum, request.studentSurname, request.lecturerSurname,
+            var (search, totalNum) = await _presenzaService.Search(request.courseName, request.studentSurname, request.lecturerSurname,
                 request.lessonDate,request.page,request.pageSize);
 
            var response = new SearchPresenzeResponse();

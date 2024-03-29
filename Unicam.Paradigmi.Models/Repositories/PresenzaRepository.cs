@@ -11,7 +11,7 @@ public class PresenzaRepository : GenericRepository<Presenza>
     {
     }
 
-    public List<Presenza> GetPresencesByFilter(string courseName , out int totalNum, string studentSurname = null, string lecturerSurname = null, DateTime? lessonDate = null, int page = 1, int pageSize = 10)
+    public async Task<(List<Presenza>, int)> GetPresencesByFilter(string courseName, string studentSurname = null, string lecturerSurname = null, DateTime? lessonDate = null, int page = 1, int pageSize = 10)
     {
         var query = _ctx.Presenze.AsQueryable();
 
@@ -34,11 +34,13 @@ public class PresenzaRepository : GenericRepository<Presenza>
                 .Where(p => p.Lezione.DataOraInizio.Date.Equals(startDate));
         }
 
-        totalNum = query.Count();
+        int totalNum = await query.CountAsync();
 
-        return query.Skip((page - 1) * pageSize)
+        var presences = await query.Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .ToList();
+            .ToListAsync();
+
+        return (presences, totalNum);
     }
 
 }

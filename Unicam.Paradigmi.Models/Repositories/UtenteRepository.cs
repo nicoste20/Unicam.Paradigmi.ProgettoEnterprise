@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +17,14 @@ public class UtenteRepository : GenericRepository<Utente>
     {
     }
 
-    public Utente GetUserByEmail(string email)
+    public async Task<Utente> GetUserByEmailAsync(string email)
     {
-        return _ctx.Utenti.Where(x => x.Email == email.ToLower()).FirstOrDefault();
+        return await _ctx.Utenti.Where(x => x.Email == email.ToLower()).FirstOrDefaultAsync();
     }
 
-    public Utente GetUserByEmailAndPassword(string email, string password)
+    public async Task<Utente> GetUserByEmailAndPasswordAsync(string email, string password)
     {
-        var utente = GetUserByEmail(email);
+        var utente = await GetUserByEmailAsync(email);
         if (utente != null && utente.Password.Equals(password))
         {
             return utente;

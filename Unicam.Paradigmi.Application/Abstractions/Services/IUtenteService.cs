@@ -9,10 +9,9 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
 {
     public interface IUtenteService
     {
-        Utente GetUserByEmail(string email);
-        Utente GetUserByEmailAndPassword(string email, string password);
-        void AddUtente(Utente utente);
-
-        Utente GetUserById(int id);
+        Task AddUtenteAsync(Utente utente);
+        Task<Utente> GetUserByEmailAsync(string email);
+        Task<Utente> GetUserByEmailAndPasswordAsync(string email, string password);
+        Task<Utente> GetUserByIdAsync(int id);
     }
 }

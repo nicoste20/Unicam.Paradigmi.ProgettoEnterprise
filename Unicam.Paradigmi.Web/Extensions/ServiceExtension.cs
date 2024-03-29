@@ -23,6 +23,7 @@ namespace Unicam.Paradigmi.Web.Extensions
                         return new BadRequestResultFactory(context);
                     };
                 });
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -43,20 +44,15 @@ namespace Unicam.Paradigmi.Web.Extensions
                     {
                         new OpenApiSecurityScheme {
                             Reference = new OpenApiReference {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
                             }
                         },
                         new string[] {}
                     }
                 });
-        });
+            });
 
-          //  services.AddValidatorsFromAssemblyContaining<CreateUtenteRequestValidator>();
-            // services.AddValidatorsFromAssemblyContaining<CreateTokenRequestValidator>(); // register validators
-            
-            
-            services.AddFluentValidationAutoValidation(); //TODO: chiedere se controlla token ? 
 
             var jwtAuthenticationOption = new JwtAuthenticationOption();
             configuration.GetSection("JwtAuthentication")
@@ -85,6 +81,7 @@ namespace Unicam.Paradigmi.Web.Extensions
                     };
                 });
 
+            services.AddFluentValidationAutoValidation();
 
             services.AddOptions(configuration);
 

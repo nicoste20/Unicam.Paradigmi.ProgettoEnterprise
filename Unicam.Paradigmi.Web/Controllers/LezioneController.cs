@@ -26,16 +26,16 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("new")]
-        public IActionResult CreateLezione(CreateLezioneRequest request)
+        public async Task<IActionResult> CreateLezioneAsync(CreateLezioneRequest request)
         {
-            if (_corsoService.GetCorso(request.IdCorso)!=null)
+            if (await _corsoService.GetCorsoAsync(request.IdCorso) !=null)
             {
                 var lezione = request.ToEntity();
                 if (lezione == null)
                 {
                     return BadRequest(ResponseFactory.WithError("Lezione nulla"));
                 }
-                _lezioneService.AddLezione(lezione);
+                await _lezioneService.AddLezioneAsync(lezione);
 
                 var response = new CreateLezioneResponse();
                 response.Lezione = new LezioneDto(lezione);

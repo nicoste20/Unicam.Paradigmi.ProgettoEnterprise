@@ -30,17 +30,18 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("new")]
-        public IActionResult CreatePresenza(CreatePresenzaRequest request )
+        public async Task<IActionResult> CreatePresenzaAsync(CreatePresenzaRequest request )
         {
             var presenza = request.ToEntity();
-            presenza.IdAlunno = _utenteService.GetUserByEmail(request.EmailAlunno).IdUtente;
+            var alunno = await _utenteService.GetUserByEmailAsync(request.EmailAlunno);
+            presenza.IdAlunno = alunno.IdUtente;
 
-            if (_utenteService.GetUserById(presenza.IdAlunno)!=null && _lezioneService.GetLezioneById(presenza.IdLezione) != null)
+            if (await _utenteService.GetUserByIdAsync(presenza.IdAlunno) !=null && await _lezioneService.GetLezioneByIdAsync(presenza.IdLezione) != null)
             {
-                var presenzaValida = ControllaLezione(presenza.IdLezione, presenza.DataOraInizio, presenza.DataOraFine);
-                if (presenzaValida)
+                var presenzaValida = ControllaLezioneAsync(presenza.IdLezione, presenza.DataOraInizio, presenza.DataOraFine);
+                if (await presenzaValida)
                 {
-                    _presenzaService.AddPresenza(presenza);
+                    await _presenzaService.AddPresenzaAsync(presenza);
                    
                     var response = new CreatePresenzaResponse();
                     response.Presenza = new PresenzaDto(presenza);
@@ -60,15 +61,15 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpDelete]
         [Route("delete")]
-        public IActionResult DeletePresenza(DeletePresenzaRequest request)
+        public async Task<IActionResult> DeletePresenzaAsync(DeletePresenzaRequest request)
         {
-            _presenzaService.Delete(request.IdPresenza);
+            await _presenzaService.DeleteAsync(request.IdPresenza);
             return Ok(ResponseFactory.WithSuccess("Presenza Eliminata"));
         }
 
-        private bool ControllaLezione(int idLezione, DateTime inizioPresenza, DateTime finePresenza)
+        private async Task<bool> ControllaLezioneAsync(int idLezione, DateTime inizioPresenza, DateTime finePresenza)
         {
-            var lezione = _lezioneService.GetLezioneById(idLezione);
+            var lezione = await _lezioneService.GetLezioneByIdAsync(idLezione);
             if(lezione != null)
             {
                 if (inizioPresenza >= lezione.DataOraInizio && finePresenza <= lezione.DataOraFine)

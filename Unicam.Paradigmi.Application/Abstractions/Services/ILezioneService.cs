@@ -9,7 +9,7 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
 {
     public interface ILezioneService
     {
-        void AddLezione(Lezione lezione);
-        Lezione GetLezioneById(int id);
+        Task AddLezioneAsync(Lezione lezione);
+        Task<Lezione> GetLezioneByIdAsync(int id);
     }
 }

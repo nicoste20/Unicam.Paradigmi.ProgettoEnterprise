@@ -29,6 +29,7 @@ namespace Unicam.Paradigmi.Models.Context
 
         public DbSet<Utente> Utenti { get; set; }
 
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -38,6 +39,7 @@ namespace Unicam.Paradigmi.Models.Context
 
             }
         }
+        */
 
         //Metodo invocato automaticamente quando istanziamo EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)

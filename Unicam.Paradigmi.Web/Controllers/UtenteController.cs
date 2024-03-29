@@ -21,15 +21,15 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("CreaUtente")]
-        public IActionResult Create(CreateUtenteRequest request) {
+        public async Task<IActionResult> CreateUtenteAsync(CreateUtenteRequest request) {
 
-            if(_utenteService.GetUserByEmail(request.Email) != null)
+            if(await _utenteService.GetUserByEmailAsync(request.Email) != null)
             {
                 return BadRequest(ResponseFactory.WithError("Utente non aggiunto, email già presente nel sistema"));
             }
 
             var utente = request.ToEntity();
-            _utenteService.AddUtente(utente);
+            await _utenteService.AddUtenteAsync(utente);
 
             var response = new CreateUtenteResponse();
             response.utente = new UtenteDto(utente);

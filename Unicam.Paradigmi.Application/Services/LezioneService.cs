@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unicam.Paradigmi.Application.Abstractions.Services;
+﻿using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Models.Entities;
 using Unicam.Paradigmi.Models.Repositories;
 
@@ -18,15 +13,15 @@ namespace Unicam.Paradigmi.Application.Services
             _lezioneRepository = lezioneRepository;
         }
 
-        public void AddLezione(Lezione lezione)
+        public async Task AddLezioneAsync(Lezione lezione)
         {
-            _lezioneRepository.Aggiungi(lezione);
-            _lezioneRepository.Save();
+            await _lezioneRepository.AggiungiAsync(lezione);
+            await _lezioneRepository.SaveAsync();
         }
 
-        public Lezione GetLezioneById(int id)
+        public async Task<Lezione> GetLezioneByIdAsync(int id)
         {
-            return _lezioneRepository.Ottieni(id);
+            return await _lezioneRepository.OttieniAsync(id);
         }
     }
 }

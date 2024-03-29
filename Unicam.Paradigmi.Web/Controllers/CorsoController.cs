@@ -29,13 +29,12 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("new")]
-        public IActionResult CreateCorso(CreateCorsoRequest request)
+        public async Task<IActionResult> CreateCorsoAsync(CreateCorsoRequest request)
         {
             int idUtente = _identityService.GetUserIdentity();
             var corso = request.ToEntity();
             corso.IdDocente = idUtente;
-            //aggiungere il corso.Docente
-            _corsoService.AddCorso(corso);
+            await _corsoService.AddCorsoAsync(corso);
             var response = new CreateCorsoResponse();
             response.Corso = new CorsoDto(corso);
             return Ok(ResponseFactory.WithSuccess(response));
@@ -45,9 +44,9 @@ namespace Unicam.Paradigmi.Web.Controllers
         
         [HttpDelete]
         [Route("delete")]
-        public IActionResult DeleteCorso(DeleteCorsoRequest request)
+        public async Task<IActionResult> DeleteCorsoAsync(DeleteCorsoRequest request)
         {
-            _corsoService.Delete(request.IdCorso);
+            await _corsoService.DeleteAsync(request.IdCorso);
             return Ok(ResponseFactory.WithSuccess(Response));
         }
         

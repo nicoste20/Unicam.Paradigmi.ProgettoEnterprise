@@ -20,21 +20,21 @@ namespace Unicam.Paradigmi.Application.Services
 
 
         //metodi per le chiamate web api con le loro logiche
-        public Corso GetCorso(int id)
+        public async Task<Corso> GetCorsoAsync(int id)
         {
-            return _corsoRepository.Ottieni(id);
+            return await _corsoRepository.OttieniAsync(id);
         }
 
-        public void AddCorso(Corso corso)
+        public async Task AddCorsoAsync(Corso corso)
         {
-            _corsoRepository.Aggiungi(corso);
-            _corsoRepository.Save();
+            await _corsoRepository.AggiungiAsync(corso);
+            await _corsoRepository.SaveAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            _corsoRepository.Elimina(id);
-            _corsoRepository.Save();
+            await _corsoRepository.Elimina(id);
+            await _corsoRepository.SaveAsync();
         }
     }
 }

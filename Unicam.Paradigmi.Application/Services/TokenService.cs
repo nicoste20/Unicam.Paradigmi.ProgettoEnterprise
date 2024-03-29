@@ -28,9 +28,9 @@ namespace Unicam.Paradigmi.Application.Services
             _utenteService = utenteService;
         }
 
-        public string CreateToken(string email, string password) { 
+        public async Task<string> CreateTokenAsync(string email, string password) { 
 
-            var user = _utenteService.GetUserByEmailAndPassword(email,password);
+            var user = await _utenteService.GetUserByEmailAndPasswordAsync(email,password);
 
             if (user == null)
             {
@@ -56,7 +56,7 @@ namespace Unicam.Paradigmi.Application.Services
                 );
 
 
-            var token = new JwtSecurityTokenHandler().WriteToken( securityToken );
+            var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
             return token;
 
         }

@@ -14,22 +14,22 @@ public class PresenzaService : IPresenzaService
         _presenzaRepository = presenzaRepository;
     }
 
-    public bool AddPresenza(Presenza presenza)
+    public async Task<bool> AddPresenzaAsync(Presenza presenza)
     {
-        _presenzaRepository.Aggiungi(presenza);
+        await _presenzaRepository.AggiungiAsync(presenza);
         return true;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        _presenzaRepository.Elimina(id);
+        await _presenzaRepository.Elimina(id);
         return true;
     }
 
-    public List<Presenza> Search(string courseName, out int totalNum, string studentSurname = null, string lecturerSurname = null, 
+    public List<Presenza> Search(string courseName, out int totalNum, string studentSurname = null, string lecturerSurname = null,
         DateTime? lessonDate = null, int page = 1, int pageSize = 10)
     {
-       return _presenzaRepository.GetPresencesByFilter(courseName, out totalNum, studentSurname, lecturerSurname, lessonDate, page,
-            pageSize);
+        return _presenzaRepository.GetPresencesByFilter(courseName, out totalNum, studentSurname, lecturerSurname, lessonDate, page,
+             pageSize);
     }
 }

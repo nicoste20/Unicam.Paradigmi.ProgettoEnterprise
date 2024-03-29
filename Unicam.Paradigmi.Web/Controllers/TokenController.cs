@@ -24,17 +24,13 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult Create(CreateTokenRequest request)
+        public async Task<IActionResult> CreateTokenAsync(CreateTokenRequest request)
         {
-            string token = _tokenService.CreateToken(request.Email,request.Password);
+            string token = await _tokenService.CreateTokenAsync(request.Email,request.Password);
 
             if (token != null)
             {
-                return Ok(
-                    ResponseFactory.WithSuccess(
-                        new CreateTokenResponse(token)
-                    )
-                );
+                return Ok(ResponseFactory.WithSuccess(new CreateTokenResponse(token)));
             }
             return BadRequest(ResponseFactory.WithError("Email o Password errata"));
         }

@@ -12,7 +12,6 @@ namespace Unicam.Paradigmi.Application.Validators
     {
         public CreateCorsoRequestValidator()
         {
-           
             RuleFor(c => c.NomeCorso)
                 .NotEmpty()
                 .WithMessage("Il campo NomeCorso è obbligatorio")

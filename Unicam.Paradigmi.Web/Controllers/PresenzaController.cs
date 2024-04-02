@@ -32,11 +32,19 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("new")]
         public async Task<IActionResult> CreatePresenzaAsync(CreatePresenzaRequest request )
         {
+            //TODO:CONTROLLARE
             var presenza = request.ToEntity();
+            if(await _utenteService.GetUserByEmailAsync(request.EmailAlunno)==null)
+            {
+                return BadRequest(ResponseFactory.WithError("Email non presente"));
+            }
             var alunno = await _utenteService.GetUserByEmailAsync(request.EmailAlunno);
             presenza.IdAlunno = alunno.IdUtente;
 
-            if (await _utenteService.GetUserByIdAsync(presenza.IdAlunno) !=null && await _lezioneService.GetLezioneByIdAsync(presenza.IdLezione) != null)
+            var lezione = await _lezioneService.GetLezioneByIdAsync(presenza.IdLezione);
+
+
+            if (lezione != null)
             {
                 var presenzaValida = ControllaLezioneAsync(presenza.IdLezione, presenza.DataOraInizio, presenza.DataOraFine);
                 if (await presenzaValida)
@@ -54,7 +62,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             }
             else
             {
-                return BadRequest(ResponseFactory.WithError("Presenza nulla"));
+                return BadRequest(ResponseFactory.WithError("Lezione non presente"));
             }
         }
 

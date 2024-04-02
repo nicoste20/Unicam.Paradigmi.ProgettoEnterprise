@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Unicam.Paradigmi.Models.Entities
 {
-    public enum ModalitaErogazione
+    public enum ModalitaErogazione 
     {
-        Presenza = 0 ,
-        Remoto = 1
+        Presenza = 1 ,
+        Remoto = 2
     }
 }

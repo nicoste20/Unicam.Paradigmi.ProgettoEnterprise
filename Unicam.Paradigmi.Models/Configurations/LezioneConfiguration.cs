@@ -19,7 +19,7 @@ namespace Unicam.Paradigmi.Models.Configurations
 
             builder.Property(p => p.Modalita)
                .HasColumnName("Modalita")
-               .HasConversion<int>();
+               .HasColumnType("tinyint");
 
 
             builder.HasMany(l => l.Presenze)

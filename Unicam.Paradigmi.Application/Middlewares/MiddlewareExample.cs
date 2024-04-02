@@ -15,7 +15,6 @@ namespace Unicam.Paradigmi.Application.Middlewares
     {
         //TODO:CONTROLLARE
 
-
         private RequestDelegate _next; //delegato della richiesta, lo invochiamo per passare al middleware successivo
         public MiddlewareExample(RequestDelegate next)
         { //costruttore

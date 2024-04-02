@@ -11,6 +11,6 @@ namespace Unicam.Paradigmi.Application.Abstractions.Services
     {
         Task AddCorsoAsync(Corso corso);
         Task<Corso> GetCorsoAsync(int id);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(Corso corso);
     }
 }

@@ -24,10 +24,10 @@ namespace Unicam.Paradigmi.Models.Repositories
         {
             return await _ctx.Set<T>().FindAsync(id);
         }
-        public async Task Elimina(object id)
+        public async Task Elimina(T id)
         {
-            var entity = await OttieniAsync(id);
-            _ctx.Set<T>().Remove(entity);
+            //var entity = await OttieniAsync(id);
+             _ctx.Set<T>().Remove(id);
         }
         public async Task SaveAsync()
         {

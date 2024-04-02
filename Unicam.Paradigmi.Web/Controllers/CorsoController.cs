@@ -46,8 +46,20 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("delete")]
         public async Task<IActionResult> DeleteCorsoAsync(DeleteCorsoRequest request)
         {
-            await _corsoService.DeleteAsync(request.IdCorso);
-            return Ok(ResponseFactory.WithSuccess(Response));
+            var idUtente = _identityService.GetUserIdentity();
+            var corso = await _corsoService.GetCorsoAsync(request.IdCorso);
+            if(idUtente.Equals(corso.IdDocente))
+            {
+                bool isCancelled = await _corsoService.DeleteAsync(corso);
+                if(!isCancelled) {
+                    return BadRequest(ResponseFactory.WithError("Corso non cancellato"));
+                }
+            }
+            else
+            {
+                return BadRequest(ResponseFactory.WithError("Il corso da cancellare non è stato creato dall'utente loggato"));
+            }
+            return Ok(ResponseFactory.WithSuccess("Il corso è stato cancellato"));
         }
         
     }

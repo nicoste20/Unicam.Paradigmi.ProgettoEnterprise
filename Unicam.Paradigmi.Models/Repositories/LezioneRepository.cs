@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,9 @@ namespace Unicam.Paradigmi.Models.Repositories
         {
         }
 
+        public async Task<Lezione> OttieniAsync(int id)
+        {
+            return await _ctx.Lezioni.Where(l => l.IdLezione == id).FirstOrDefaultAsync();
+        }
     }
 }

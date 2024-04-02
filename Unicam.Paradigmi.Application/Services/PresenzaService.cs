@@ -22,7 +22,8 @@ public class PresenzaService : IPresenzaService
 
     public async Task<bool> DeleteAsync(int id)
     {
-        await _presenzaRepository.Elimina(id);
+        var presenza = await _presenzaRepository.OttieniAsync(id);
+        await _presenzaRepository.Elimina(presenza);
         return true;
     }
 

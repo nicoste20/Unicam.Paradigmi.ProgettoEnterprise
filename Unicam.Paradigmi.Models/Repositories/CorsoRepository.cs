@@ -15,6 +15,5 @@ namespace Unicam.Paradigmi.Models.Repositories
         public CorsoRepository(MyDbContext ctx) : base(ctx)
         {
         }
-
     }
 }

@@ -50,10 +50,8 @@ namespace Unicam.Paradigmi.Web.Controllers
             var corso = await _corsoService.GetCorsoAsync(request.IdCorso);
             if(idUtente.Equals(corso.IdDocente))
             {
-                bool isCancelled = await _corsoService.DeleteAsync(corso);
-                if(!isCancelled) {
-                    return BadRequest(ResponseFactory.WithError("Corso non cancellato"));
-                }
+                await _corsoService.DeleteAsync(corso);
+                return BadRequest(ResponseFactory.WithError("Corso non cancellato"));
             }
             else
             {

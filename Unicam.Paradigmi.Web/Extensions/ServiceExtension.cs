@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 using Unicam.Paradigmi.Application.Options;
 using Unicam.Paradigmi.Application.Validators;
 using Unicam.Paradigmi.Web.Results;
@@ -23,6 +24,9 @@ namespace Unicam.Paradigmi.Web.Extensions
                         return new BadRequestResultFactory(context);
                     };
                 });
+
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c => {

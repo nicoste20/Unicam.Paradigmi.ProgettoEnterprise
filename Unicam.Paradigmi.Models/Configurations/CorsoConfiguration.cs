@@ -17,11 +17,6 @@ namespace Unicam.Paradigmi.Models.Configurations
 
             builder.HasKey(c => c.IdCorso);
 
-
-            builder.HasOne(c => c.Docente)
-                .WithMany(d => d.CorsiCreati)
-                .HasForeignKey(c => c.IdDocente);
-
             builder.HasMany(c => c.CalendarioLezioni)
                 .WithOne(l => l.Corso)
                 .HasForeignKey(l => l.IdCorso);

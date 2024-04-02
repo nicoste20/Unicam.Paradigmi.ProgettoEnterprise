@@ -16,11 +16,6 @@ namespace Unicam.Paradigmi.Models.Configurations
             builder.ToTable("Presenze");
             builder.HasKey(k => k.IdPresenza);
 
-            builder.HasOne(p => p.Alunno)
-                .WithMany()
-                .HasForeignKey(p => p.IdAlunno);
-
-            
         }
     }
 }

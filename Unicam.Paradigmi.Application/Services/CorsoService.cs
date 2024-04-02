@@ -31,11 +31,10 @@ namespace Unicam.Paradigmi.Application.Services
             await _corsoRepository.SaveAsync();
         }
 
-        public async Task<bool> DeleteAsync(Corso corso)
+        public async Task DeleteAsync(Corso corso)
         {
             await _corsoRepository.Elimina(corso);
             await _corsoRepository.SaveAsync();
-            return true;
         }
     }
 }

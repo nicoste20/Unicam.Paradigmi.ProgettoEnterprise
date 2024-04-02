@@ -14,17 +14,17 @@ public class PresenzaService : IPresenzaService
         _presenzaRepository = presenzaRepository;
     }
 
-    public async Task<bool> AddPresenzaAsync(Presenza presenza)
+    public async Task AddPresenzaAsync(Presenza presenza)
     {
         await _presenzaRepository.AggiungiAsync(presenza);
-        return true;
+        await _presenzaRepository.SaveAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
         var presenza = await _presenzaRepository.OttieniAsync(id);
         await _presenzaRepository.Elimina(presenza);
-        return true;
+        await _presenzaRepository.SaveAsync();
     }
 
     public async Task<(List<Presenza>, int)> Search(string courseName, string studentSurname = null, string lecturerSurname = null,

@@ -10,6 +10,7 @@ namespace Unicam.Paradigmi.Application.Validators
 {
     public class CreatePresenzaRequestValidator :AbstractValidator<CreatePresenzaRequest>
     {
+        // metodo costruttore dove vengono definite le regole dei campi DataOra inizio e fine di una presenza
         public CreatePresenzaRequestValidator()
         {
 

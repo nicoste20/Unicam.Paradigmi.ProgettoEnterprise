@@ -8,9 +8,9 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Dtos
 {
+    // DTO per un utente
     public class UtenteDto
     {
-
         public UtenteDto() { }
 
         public UtenteDto(Utente utente)

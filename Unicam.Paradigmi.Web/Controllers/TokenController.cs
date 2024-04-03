@@ -9,6 +9,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
+    //controller per la gestione dei token JWT
     [ApiController]
     [Route("api/v1/[controller]")]
     public class TokenController : Controller
@@ -21,7 +22,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             _tokenService = tokenService;
         }
 
-
+        //endpoint per la creazione del token JWT a partire dalle credenziali fornite
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> CreateTokenAsync(CreateTokenRequest request)

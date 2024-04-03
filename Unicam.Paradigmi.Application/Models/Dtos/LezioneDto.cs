@@ -7,9 +7,9 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Dtos
 {
+    // DTO per una lezione
     public class LezioneDto
     {
-        //mappa entità
         public LezioneDto() { }
 
         public LezioneDto(Lezione lezione)

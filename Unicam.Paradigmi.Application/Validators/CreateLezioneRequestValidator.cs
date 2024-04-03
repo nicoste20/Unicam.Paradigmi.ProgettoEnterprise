@@ -10,6 +10,7 @@ namespace Unicam.Paradigmi.Application.Validators
 {
     public class CreateLezioneRequestValidator : AbstractValidator<CreateLezioneRequest>
     {
+        // metodo costruttore dove vengono definite le regole dei campi DataOra inizio e fine, luogo e modalità di erogazione di una lezione
         public CreateLezioneRequestValidator()
         {
             RuleFor(l => l.DataOraInizio)

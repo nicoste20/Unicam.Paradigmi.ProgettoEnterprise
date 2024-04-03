@@ -5,6 +5,7 @@ namespace Unicam.Paradigmi.Application.Validators
 {
     public class DeletePresenzaRequestValidator : AbstractValidator<DeletePresenzaRequest>
     {
+        // metodo costruttore dove vengono definite le regole del campo IdPresenza
         public DeletePresenzaRequestValidator()
         {
             RuleFor(r=>r.IdPresenza)

@@ -7,9 +7,9 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Dtos
 {
-    public  class CorsoDto
+    // DTO per un corso
+    public class CorsoDto
     {
-
         public CorsoDto() { }   
         public CorsoDto(Corso corso)
         {

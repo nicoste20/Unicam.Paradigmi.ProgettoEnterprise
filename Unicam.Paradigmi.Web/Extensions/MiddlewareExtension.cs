@@ -8,7 +8,7 @@ namespace Unicam.Paradigmi.Web.Extensions
     {
         public static WebApplication? AddWebMiddleware(this WebApplication? app) {
 
-            // Configure the HTTP request pipeline.
+            // configura le pipeline delle richieste HTTP
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -20,12 +20,14 @@ namespace Unicam.Paradigmi.Web.Extensions
                 await next.Invoke();
             });
 
-            app.UseHttpsRedirection(); // primo middleware che controlla se la chiamata è http e blocca l'esecuzione
+            //app.UseHttpsRedirection(); // primo middleware che controlla se la chiamata è http e blocca l'esecuzione
 
             app.UseAuthentication();
 
             app.UseAuthorization(); //se era https controllo le autorizzazioni ed eseguo le operazioni dei servizi
 
+            /*
+            //Middleware per la gestione delle eccezioni
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async context =>
@@ -44,7 +46,9 @@ namespace Unicam.Paradigmi.Web.Extensions
                 });
             });
 
-            app.MapControllers(); //sono autorizzato e mappo gli oggetti che vengono chiamati controller
+            */
+            //Middleware per mappare i controller
+            app.MapControllers(); 
             return app;
         }
     }

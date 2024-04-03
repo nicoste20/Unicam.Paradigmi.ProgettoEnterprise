@@ -12,6 +12,8 @@ using Unicam.Paradigmi.Application.Models.Responses;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
+
+    //controller per la gestione delle presenze, necessita di autorizzazione
     [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -28,22 +30,27 @@ namespace Unicam.Paradigmi.Web.Controllers
             _lezioneService = lezioneService;
         }
 
+        //endpoint per la creazione di una nuova presenza
         [HttpPost]
         [Route("new")]
         public async Task<IActionResult> CreatePresenzaAsync(CreatePresenzaRequest request)
         {
             var presenza = request.ToEntity();
+
+            //controllo che la mail dell'alunno sia presente nel db
             if(await _utenteService.GetUserByEmailAsync(request.EmailAlunno)==null)
             {
-                return BadRequest(ResponseFactory.WithError("Email non presente"));
+                return BadRequest(ResponseFactory.WithError("Email Alunno non presente"));
             }
 
             var alunno = await _utenteService.GetUserByEmailAsync(request.EmailAlunno);
             presenza.IdAlunno = alunno.IdUtente;
             var lezione = await _lezioneService.GetLezioneByIdAsync(presenza.IdLezione);
 
+            //controllo che la lezione per cui si sta inserendo la lezione non sia nulla
             if (lezione != null)
             {
+                //controllo che gli orari della presenza siano congrui con quelli della lezione
                 var presenzaValida = ControllaLezioneAsync(presenza.IdLezione, presenza.DataOraInizio, presenza.DataOraFine);
                 if (await presenzaValida)
                 {
@@ -64,15 +71,20 @@ namespace Unicam.Paradigmi.Web.Controllers
             }
         }
 
-
+        //endpoint per l'eliminazione di una presenza
         [HttpDelete]
         [Route("delete")]
         public async Task<IActionResult> DeletePresenzaAsync(DeletePresenzaRequest request)
         {
-            await _presenzaService.DeleteAsync(request.IdPresenza);
-            return Ok(ResponseFactory.WithSuccess("Presenza Eliminata"));
+            if (await _presenzaService.GetPresenzaByIdAsync(request.IdPresenza) != null)
+            {
+                await _presenzaService.DeleteAsync(request.IdPresenza);
+                return Ok(ResponseFactory.WithSuccess("Presenza Eliminata"));
+            }
+            return BadRequest(ResponseFactory.WithError("Presenza non presente"));
         }
 
+        //metodo privato che conrtolla che gli orari della presenza siano congurui con quelli della lezione
         private async Task<bool> ControllaLezioneAsync(int idLezione, DateTime inizioPresenza, DateTime finePresenza)
         {
             var lezione = await _lezioneService.GetLezioneByIdAsync(idLezione);
@@ -86,10 +98,12 @@ namespace Unicam.Paradigmi.Web.Controllers
             return false;
         }
 
+        //endpoint per la ricerca di una presenza
         [HttpPost]
         [Route("search")]
         public async Task<IActionResult> SearchPresenze(SearchPresenzeRequest request)
         {
+            //TODO:CONTROLLARE
             var (search, totalNum) = await _presenzaService.Search(request.courseName, request.studentSurname, request.lecturerSurname,
                 request.lessonDate,request.page,request.pageSize);
 

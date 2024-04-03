@@ -16,6 +16,7 @@ using Unicam.Paradigmi.Models.Repositories;
 
 namespace Unicam.Paradigmi.Application.Services
 {
+    // servizio per la gestione dei token, contiene i metodi per le chiamate web api con le loro logiche
     public class TokenService : ITokenService
     {
         private readonly JwtAuthenticationOption _jwtAuthOption;
@@ -28,6 +29,7 @@ namespace Unicam.Paradigmi.Application.Services
             _utenteService = utenteService;
         }
 
+        //metodo per creare un token
         public async Task<string> CreateTokenAsync(string email, string password) { 
 
             var user = await _utenteService.GetUserByEmailAndPasswordAsync(email,password);
@@ -37,6 +39,7 @@ namespace Unicam.Paradigmi.Application.Services
                 return "Richiesta non validata";
             }
 
+            //aggiunta delle claims
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim("Id", $"{user.IdUtente}"));
 

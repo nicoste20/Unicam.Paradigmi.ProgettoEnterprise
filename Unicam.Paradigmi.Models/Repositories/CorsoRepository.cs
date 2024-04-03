@@ -9,11 +9,22 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Models.Repositories
 {
+    // repository per l'entità corso
     public class CorsoRepository : GenericRepository<Corso>
     {
-
         public CorsoRepository(MyDbContext ctx) : base(ctx)
         {
+        }
+
+        // verifica se esiste un corso con il nome specificato
+        public async Task<bool> GetCorsoByNameAsync(string nomeCorso)
+        {
+            var corso = _ctx.Corsi.Where(c => c.NomeCorso == nomeCorso).FirstOrDefaultAsync();
+            if(corso!=null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

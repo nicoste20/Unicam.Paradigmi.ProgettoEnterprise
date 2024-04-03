@@ -8,6 +8,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
+    //controller per la gestione degli utenti, necessita di autorizzazione
     [ApiController]
     [Route("api/v1/[controller]")]
     public class UtenteController : ControllerBase
@@ -19,10 +20,11 @@ namespace Unicam.Paradigmi.Web.Controllers
             _utenteService = utenteService;
         }
 
+        //endpoint per la creazione di un utente 
         [HttpPost]
         [Route("CreaUtente")]
         public async Task<IActionResult> CreateUtenteAsync(CreateUtenteRequest request) {
-
+            //gestione errore se utente già presente
             if(await _utenteService.GetUserByEmailAsync(request.Email) != null)
             {
                 return BadRequest(ResponseFactory.WithError("Utente non aggiunto, email già presente nel sistema"));

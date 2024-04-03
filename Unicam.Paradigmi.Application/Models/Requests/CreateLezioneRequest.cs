@@ -7,6 +7,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Requests
 {
+    // richiesta per la creazione di una nuova lezione
     public class CreateLezioneRequest
     {
         public int IdCorso { get; set; }
@@ -15,6 +16,7 @@ namespace Unicam.Paradigmi.Application.Models.Requests
         public string Luogo { get; set; }
         public ModalitaErogazione Modalita { get; set; }
 
+        //mapping manuale
         public Lezione ToEntity()
         {
             var lezione = new Lezione();

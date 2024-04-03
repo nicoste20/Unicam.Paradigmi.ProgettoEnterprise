@@ -1,5 +1,6 @@
 ﻿namespace Unicam.Paradigmi.Application.Models.Requests;
 
+// richiesta per la ricerca di una presenza
 public class SearchPresenzeRequest
 {
     public string courseName { get; set; } = string.Empty;

@@ -3,34 +3,45 @@ using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Models.Entities;
 using Unicam.Paradigmi.Models.Repositories;
 
-namespace Unicam.Paradigmi.Application.Services;
-
-public class PresenzaService : IPresenzaService
+namespace Unicam.Paradigmi.Application.Services
 {
-    private readonly PresenzaRepository _presenzaRepository;
-
-    public PresenzaService(PresenzaRepository presenzaRepository)
+    // servizio per la gestione delle presenze, contiene i metodi per le chiamate web api con le loro logiche
+    public class PresenzaService : IPresenzaService
     {
-        _presenzaRepository = presenzaRepository;
-    }
+        private readonly PresenzaRepository _presenzaRepository;
 
-    public async Task AddPresenzaAsync(Presenza presenza)
-    {
-        await _presenzaRepository.AggiungiAsync(presenza);
-        await _presenzaRepository.SaveAsync();
-    }
+        public PresenzaService(PresenzaRepository presenzaRepository)
+        {
+            _presenzaRepository = presenzaRepository;
+        }
 
-    public async Task DeleteAsync(int id)
-    {
-        var presenza = await _presenzaRepository.OttieniAsync(id);
-        await _presenzaRepository.Elimina(presenza);
-        await _presenzaRepository.SaveAsync();
-    }
+        // metodo per l'aggiunta di una presenza
+        public async Task AddPresenzaAsync(Presenza presenza)
+        {
+            await _presenzaRepository.AggiungiAsync(presenza);
+            await _presenzaRepository.SaveAsync();
+        }
 
-    public async Task<(List<Presenza>, int)> Search(string courseName, string studentSurname = null, string lecturerSurname = null,
-        DateTime? lessonDate = null, int page = 1, int pageSize = 10)
-    {
-        return await _presenzaRepository.GetPresencesByFilter(courseName, studentSurname, lecturerSurname, lessonDate, page,
-             pageSize);
+        // metodo per l'eliminazione di una presenza 
+        public async Task DeleteAsync(int id)
+        {
+            var presenza = await _presenzaRepository.OttieniAsync(id);
+            await _presenzaRepository.Elimina(presenza);
+            await _presenzaRepository.SaveAsync();
+        }
+
+        // metodo per la ricerca di una presenza
+        public async Task<(List<Presenza>, int)> Search(string courseName, string studentSurname = null, string lecturerSurname = null,
+            DateTime? lessonDate = null, int page = 1, int pageSize = 10)
+        {
+            return await _presenzaRepository.GetPresencesByFilter(courseName, studentSurname, lecturerSurname, lessonDate, page,
+                 pageSize);
+        }
+
+        // metodo per ottenere una presenza dato l'id
+        public async Task<Presenza> GetPresenzaByIdAsync(int id)
+        {
+            return await _presenzaRepository.OttieniAsync(id);
+        }
     }
 }

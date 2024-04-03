@@ -9,6 +9,7 @@ using Unicam.Paradigmi.Application.Models.Responses;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
+    //controller per la gestione delle lezioni, necessita di autorizzazione
     [ApiController]
     [Route("api/v1/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -24,17 +25,23 @@ namespace Unicam.Paradigmi.Web.Controllers
             _lezioneService = lezioneService;
         }
 
+
+        //endpoint per la creazione di una nuova lezione 
         [HttpPost]
         [Route("new")]
         public async Task<IActionResult> CreateLezioneAsync(CreateLezioneRequest request)
         {
+            //controllo che il corso per cui si sta inserendo una lezione esista
             if (await _corsoService.GetCorsoAsync(request.IdCorso) !=null)
             {
                 var lezione = request.ToEntity();
+
+                //gestione errore se la lezione risulta nulla
                 if (lezione == null)
                 {
                     return BadRequest(ResponseFactory.WithError("Lezione nulla"));
                 }
+
                 await _lezioneService.AddLezioneAsync(lezione);
 
                 var response = new CreateLezioneResponse();
@@ -46,8 +53,5 @@ namespace Unicam.Paradigmi.Web.Controllers
                 return BadRequest("Corso non trovato");
             }
         }
-
-
-       
     }
 }

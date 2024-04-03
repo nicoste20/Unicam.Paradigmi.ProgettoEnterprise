@@ -18,7 +18,9 @@ namespace Unicam.Paradigmi.Application.Validators
                 .NotNull()
                 .WithMessage("Il campo NomeCorso non può essere nullo")
                 .MaximumLength(100)
-                .WithMessage("Il campo NomeCorso non può superare i 100 caratteri");
+                .WithMessage("Il campo NomeCorso non può superare i 100 caratteri")
+                .Matches(@"^[a-zA-Z]+\_\d{4}$")
+                .WithMessage("Il campo NomeCorso deve essere nella forma 'nomeCorso_AAAA'");
 
             RuleFor(c => c.NOre)
                 .NotEmpty()

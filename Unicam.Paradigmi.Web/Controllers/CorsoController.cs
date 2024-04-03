@@ -11,6 +11,7 @@ using Unicam.Paradigmi.Application.Models.Responses;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
+    //controller per la gestione dei corsi, necessita di autenticazione
     [ApiController]
     [Route("api/v1/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -27,37 +28,50 @@ namespace Unicam.Paradigmi.Web.Controllers
             _identityService = identityService;
         }
 
+        //endpoint per la creazione di un corso
         [HttpPost]
         [Route("new")]
         public async Task<IActionResult> CreateCorsoAsync(CreateCorsoRequest request)
         {
             int idUtente = _identityService.GetUserIdentity();
             var corso = request.ToEntity();
+            //aggiunta docente che crea il corso all'entità corso
             corso.IdDocente = idUtente;
-            await _corsoService.AddCorsoAsync(corso);
-            var response = new CreateCorsoResponse();
-            response.Corso = new CorsoDto(corso);
-            return Ok(ResponseFactory.WithSuccess(response));
+
+            //controlla che non ci siano altri corsi con lo stesso nome
+            if (! await _corsoService.GetCorsoByNameAsync(corso.NomeCorso)) {
+                //aggiunta del corso
+                await _corsoService.AddCorsoAsync(corso);
+
+                var response = new CreateCorsoResponse();
+                response.Corso = new CorsoDto(corso);
+                return Ok(ResponseFactory.WithSuccess(response));
+            }
+            else
+            {
+                return BadRequest(ResponseFactory.WithError("Esiste già un corso con lo stesso nome"));
+            }
         }
 
 
-        
+        //endpoint per l'eliminazione di un corso
         [HttpDelete]
         [Route("delete")]
         public async Task<IActionResult> DeleteCorsoAsync(DeleteCorsoRequest request)
         {
             var idUtente = _identityService.GetUserIdentity();
             var corso = await _corsoService.GetCorsoAsync(request.IdCorso);
+
+            //controllo che l'utente che cerca di eseguire la cancellazione del corso sia lo stesso che lo ha creato
             if(idUtente.Equals(corso.IdDocente))
             {
                 await _corsoService.DeleteAsync(corso);
-                return BadRequest(ResponseFactory.WithError("Corso non cancellato"));
+                return Ok(ResponseFactory.WithSuccess("Corso cancellato"));
             }
             else
             {
                 return BadRequest(ResponseFactory.WithError("Il corso da cancellare non è stato creato dall'utente loggato"));
             }
-            return Ok(ResponseFactory.WithSuccess("Il corso è stato cancellato"));
         }
         
     }

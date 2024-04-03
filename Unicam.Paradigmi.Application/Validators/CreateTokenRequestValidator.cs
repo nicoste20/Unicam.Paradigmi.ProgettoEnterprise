@@ -11,6 +11,7 @@ namespace Unicam.Paradigmi.Application.Validators
 {
     public class CreateTokenRequestValidator : AbstractValidator<CreateTokenRequest>
     {
+        // metodo costruttore dove vengono definite le regole dei campi Email e Password per la creazione del token
         public CreateTokenRequestValidator()
         {
             RuleFor(r => r.Email)

@@ -12,6 +12,7 @@ namespace Unicam.Paradigmi.Application.Validators
 {
     public class CreateUtenteRequestValidator : AbstractValidator<CreateUtenteRequest>
     {
+        // metodo costruttore dove vengono definite le regole dei campi Email, Password, Nome e Cognome di un nuovo utente
         public CreateUtenteRequestValidator()
         {
             RuleFor(r => r.Email)

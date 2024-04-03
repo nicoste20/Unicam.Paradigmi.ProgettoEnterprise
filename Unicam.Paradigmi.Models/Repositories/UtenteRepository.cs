@@ -12,16 +12,18 @@ namespace Unicam.Paradigmi.Models.Repositories;
 
 public class UtenteRepository : GenericRepository<Utente>
 {
-
+    // repository per l'entità utente
     public UtenteRepository(MyDbContext ctx) : base(ctx)
     {
     }
 
+    // ottiene l'utente data l'email
     public async Task<Utente> GetUserByEmailAsync(string email)
     {
         return await _ctx.Utenti.Where(x => x.Email == email.ToLower()).FirstOrDefaultAsync();
     }
 
+    //ottiene l'utente data l'email e la password
     public async Task<Utente> GetUserByEmailAndPasswordAsync(string email, string password)
     {
         var utente = await GetUserByEmailAsync(email);
@@ -30,7 +32,5 @@ public class UtenteRepository : GenericRepository<Utente>
             return utente;
         }
         return null;
-    }
-
-   
+    }   
 }

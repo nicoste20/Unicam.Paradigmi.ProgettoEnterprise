@@ -7,6 +7,7 @@ using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Application.Models.Dtos
 {
+    // DTO per una presenza
     public class PresenzaDto
     {
         public PresenzaDto() { }

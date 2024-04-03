@@ -6,6 +6,7 @@ using Unicam.Paradigmi.Application.Abstractions.Services;
 
 namespace Unicam.Paradigmi.Application.Services
 {
+    // servizio per la gestione delle identità degli utenti, contiene i metodi per le chiamate web api con le loro logiche
     internal class IdentityService : IIdentityService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -15,6 +16,7 @@ namespace Unicam.Paradigmi.Application.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
+        // metodo per ottenere l'identità di un utente
         public int GetUserIdentity()
         {
             // Ottieni l'identità dell'utente dall'HttpContextAccessor

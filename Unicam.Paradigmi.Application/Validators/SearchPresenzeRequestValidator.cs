@@ -18,6 +18,14 @@ namespace Unicam.Paradigmi.Application.Validators
                         context.AddFailure("Almeno uno dei campi deve essere specificato");
                     }
                 });
+
+            RuleFor(request => request.Pagina)
+                .GreaterThan(0)
+                .WithMessage("La pagina deve essere più grande di 0");
+
+            RuleFor(request => request.DimensionePagina)
+                .GreaterThan(0)
+                .WithMessage("La dimensione della pagina deve essere più grande di 0");
         }
     }
 }

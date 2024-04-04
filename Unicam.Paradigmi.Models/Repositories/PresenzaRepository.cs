@@ -23,17 +23,20 @@ public class PresenzaRepository : GenericRepository<Presenza>
 
         if (!string.IsNullOrEmpty(courseName))
         {
-            query = query.Where(p => p.Lezione.Corso.NomeCorso == courseName);
+            string courseNameLower = courseName.ToLower();
+            query = query.Where(p => p.Lezione.Corso.NomeCorso.ToLower() == courseNameLower);
         }
 
         if (!string.IsNullOrEmpty(studentSurname))
         {
-            query = query.Where(p => p.Alunno.Cognome == studentSurname);
+            string studentSurnameLower = studentSurname.ToLower();
+            query = query.Where(p => p.Alunno.Cognome.ToLower() == studentSurnameLower);
         }
 
         if (!string.IsNullOrEmpty(lecturerSurname))
         {
-            query = query.Where(p => p.Lezione.Corso.Docente.Cognome == lecturerSurname);
+            string lecturerSurnameLower = lecturerSurname.ToLower();
+            query = query.Where(p => p.Lezione.Corso.Docente.Cognome.ToLower() == lecturerSurnameLower);
         }
 
         if (lessonDate.HasValue)

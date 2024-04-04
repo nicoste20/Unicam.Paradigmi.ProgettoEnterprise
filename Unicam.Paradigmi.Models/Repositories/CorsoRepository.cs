@@ -19,7 +19,7 @@ namespace Unicam.Paradigmi.Models.Repositories
         // verifica se esiste un corso con il nome specificato
         public async Task<bool> ExistCorsoByNameAsync(string nomeCorso)
         {
-            var corso = _ctx.Corsi.Where(c => c.NomeCorso == nomeCorso).FirstOrDefaultAsync();
+            var corso = _ctx.Corsi.Where(c => c.NomeCorso.ToLower() == nomeCorso.ToLower()).FirstOrDefaultAsync();
             if(corso.Result != null )
             {
                 return true;

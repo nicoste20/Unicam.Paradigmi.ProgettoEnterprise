@@ -20,7 +20,7 @@ public class UtenteRepository : GenericRepository<Utente>
     // ottiene l'utente data l'email
     public async Task<Utente> GetUserByEmailAsync(string email)
     {
-        return await _ctx.Utenti.Where(x => x.Email == email.ToLower()).FirstOrDefaultAsync();
+        return await _ctx.Utenti.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
     }
 
     //ottiene l'utente data l'email e la password

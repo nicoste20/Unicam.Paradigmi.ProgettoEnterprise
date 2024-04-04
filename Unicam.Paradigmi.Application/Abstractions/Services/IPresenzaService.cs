@@ -12,7 +12,6 @@ public interface IPresenzaService
     Task DeleteAsync(int idPresenza);
 
     Task<Presenza> GetPresenzaByIdAsync(int id);
-    public Task<(List<Presenza>, int)> Search(string courseName, string studentSurname = null,
-        string lecturerSurname = null,
-        DateTime? lessonDate = null, int page = 1, int pageSize = 10);
+    public Task<(List<Presenza>, int)> Search(string courseName, string studentSurname,
+        string lecturerSurname, DateTime? lessonDate, int page, int pageSize);
 }

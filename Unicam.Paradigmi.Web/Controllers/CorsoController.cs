@@ -39,7 +39,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             corso.IdDocente = idUtente;
 
             //controlla che non ci siano altri corsi con lo stesso nome
-            if (! await _corsoService.GetCorsoByNameAsync(corso.NomeCorso)) {
+            if (! await _corsoService.ExistCorsoByNameAsync(corso.NomeCorso)) {
                 //aggiunta del corso
                 await _corsoService.AddCorsoAsync(corso);
 

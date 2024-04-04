@@ -22,7 +22,7 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         //endpoint per la creazione di un utente 
         [HttpPost]
-        [Route("CreaUtente")]
+        [Route("new")]
         public async Task<IActionResult> CreateUtenteAsync(CreateUtenteRequest request) {
             //gestione errore se utente già presente
             if(await _utenteService.GetUserByEmailAsync(request.Email) != null)

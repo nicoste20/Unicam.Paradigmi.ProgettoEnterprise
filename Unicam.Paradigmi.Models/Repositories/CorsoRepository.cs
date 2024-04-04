@@ -17,10 +17,10 @@ namespace Unicam.Paradigmi.Models.Repositories
         }
 
         // verifica se esiste un corso con il nome specificato
-        public async Task<bool> GetCorsoByNameAsync(string nomeCorso)
+        public async Task<bool> ExistCorsoByNameAsync(string nomeCorso)
         {
             var corso = _ctx.Corsi.Where(c => c.NomeCorso == nomeCorso).FirstOrDefaultAsync();
-            if(corso!=null)
+            if(corso.Result != null )
             {
                 return true;
             }

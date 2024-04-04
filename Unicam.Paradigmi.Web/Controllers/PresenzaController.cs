@@ -103,12 +103,11 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("search")]
         public async Task<IActionResult> SearchPresenze(SearchPresenzeRequest request)
         {
-            //TODO:CONTROLLARE
-            var (search, totalNum) = await _presenzaService.Search(request.courseName, request.studentSurname, request.lecturerSurname,
-                request.lessonDate,request.page,request.pageSize);
+            var (search, totalNum) = await _presenzaService.Search(request.NomeCorso, request.CognomeStudente, request.CognomeDocente,
+                request.DataLezione,request.Pagina,request.DimensionePagina);
 
            var response = new SearchPresenzeResponse();
-           var pageFounded = (totalNum / (decimal)request.pageSize);
+           var pageFounded = (totalNum / (decimal)request.DimensionePagina);
            response.NumeroPagine = (int)Math.Ceiling(pageFounded);
            response.Presenze = search.Select(s =>
                new PresenzaDto(s)).ToList();

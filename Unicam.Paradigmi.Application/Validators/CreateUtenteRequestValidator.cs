@@ -1,12 +1,6 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unicam.Paradigmi.Application.Extensions;
 using Unicam.Paradigmi.Application.Models.Requests;
-using Unicam.Paradigmi.Application.Models.Responses;
 
 namespace Unicam.Paradigmi.Application.Validators
 {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicam.Paradigmi.Application.Extensions;
 using Unicam.Paradigmi.Application.Models.Requests;
 
 namespace Unicam.Paradigmi.Application.Validators
@@ -18,9 +19,7 @@ namespace Unicam.Paradigmi.Application.Validators
                 .NotNull()
                 .WithMessage("Il campo NomeCorso non può essere nullo")
                 .MaximumLength(100)
-                .WithMessage("Il campo NomeCorso non può superare i 100 caratteri")
-                .Matches(@"^[a-zA-Z]+\_\d{4}$")
-                .WithMessage("Il campo NomeCorso deve essere nella forma 'nomeCorso_AAAA'");
+                .WithMessage("Il campo NomeCorso non può superare i 100 caratteri");
 
             RuleFor(c => c.NOre)
                 .NotEmpty()

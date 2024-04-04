@@ -40,9 +40,9 @@ namespace Unicam.Paradigmi.Application.Services
         }
 
         //metodo per ottenere un corso dato il nome
-        public async Task<bool> GetCorsoByNameAsync(string nomeCorso)
+        public async Task<bool> ExistCorsoByNameAsync(string nomeCorso)
         {
-            return await _corsoRepository.GetCorsoByNameAsync(nomeCorso);
+            return await _corsoRepository.ExistCorsoByNameAsync(nomeCorso);
         }
     }
 }

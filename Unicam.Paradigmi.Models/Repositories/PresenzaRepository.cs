@@ -12,36 +12,46 @@ public class PresenzaRepository : GenericRepository<Presenza>
     }
 
     // ottiene le presenze tramite un filtro
-    public async Task<(List<Presenza>, int)> GetPresencesByFilter(string courseName, string studentSurname = null, string lecturerSurname = null, DateTime? lessonDate = null, int page = 1, int pageSize = 10)
+    public async Task<(List<Presenza>, int)> GetPresencesByFilter(string courseName, string studentSurname, string lecturerSurname, DateTime? lessonDate, int page, int pageSize)
     {
-        var query = _ctx.Presenze.AsQueryable();
+        var query = _ctx.Presenze
+            .Include(p => p.Lezione)
+                .ThenInclude(l => l.Corso)
+                .ThenInclude(c => c.Docente)
+            .Include(p => p.Alunno)
+            .AsQueryable();
 
-        query = query.Include(p => p.Lezione)
-            .ThenInclude(l => l.Corso).Where(p => p.Lezione.Corso.NomeCorso == courseName);
+        if (!string.IsNullOrEmpty(courseName))
+        {
+            query = query.Where(p => p.Lezione.Corso.NomeCorso == courseName);
+        }
 
         if (!string.IsNullOrEmpty(studentSurname))
-            query = query.Include(p => p.Alunno)
-                .Where(p => p.Alunno.Cognome == studentSurname);
+        {
+            query = query.Where(p => p.Alunno.Cognome == studentSurname);
+        }
 
         if (!string.IsNullOrEmpty(lecturerSurname))
-            query = query.Include(p => p.Lezione)
-                .ThenInclude(l => l.Corso)
-                .ThenInclude(c => c.Docente).Where(l => l.Lezione.Corso.Docente.Cognome == lecturerSurname);
+        {
+            query = query.Where(p => p.Lezione.Corso.Docente.Cognome == lecturerSurname);
+        }
 
         if (lessonDate.HasValue)
         {
             DateTime startDate = lessonDate.Value.Date;
-            query = query.Include(p => p.Lezione)
-                .Where(p => p.Lezione.DataOraInizio.Date.Equals(startDate));
+            query = query.Where(p => p.Lezione.DataOraInizio.Date == startDate);
         }
 
         int totalNum = await query.CountAsync();
 
-        var presences = await query.Skip((page - 1) * pageSize)
+        var presences = await query
+            .OrderBy(p => p.Lezione.DataOraInizio) // Ordina per data di lezione, se necessario
+            .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
 
         return (presences, totalNum);
     }
+
 
 }

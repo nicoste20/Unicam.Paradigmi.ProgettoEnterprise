@@ -13,7 +13,8 @@ namespace Unicam.Paradigmi.Application.Extensions
                 AppDomain.CurrentDomain.GetAssemblies()
                 .SingleOrDefault(assembly => assembly.GetName().Name == "Unicam.Paradigmi.Application"));
 
-            //Istanze del servizio
+            
+            services.AddScoped<IEmailService, EmailService>();
             //Permette di accedere alle contesto di chiamate e risposte HTTP
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IIdentityService, IdentityService>();

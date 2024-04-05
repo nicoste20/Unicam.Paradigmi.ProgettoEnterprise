@@ -13,10 +13,12 @@ namespace Unicam.Paradigmi.Web.Controllers
     public class UtenteController : ControllerBase
     {
         private readonly IUtenteService _utenteService;
+        private readonly IEmailService _emailService;
 
-        public UtenteController(IUtenteService utenteService)
+        public UtenteController(IUtenteService utenteService, IEmailService emailService)
         {
             _utenteService = utenteService;
+            _emailService = emailService;
         }
 
         //endpoint per la creazione di un utente 
@@ -34,6 +36,8 @@ namespace Unicam.Paradigmi.Web.Controllers
 
             var response = new CreateUtenteResponse();
             response.utente = new UtenteDto(utente);
+            await _emailService.SendEmailAsync("Utente creato", "Complimenti per aver creato il tuo utente",
+                utente.Email);
             return Ok(ResponseFactory.WithSuccess(response));
         }
     }

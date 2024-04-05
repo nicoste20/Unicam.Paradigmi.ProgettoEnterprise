@@ -91,6 +91,10 @@ namespace Unicam.Paradigmi.Web.Extensions
                 configuration.GetSection("JwtAuthentication")
                 );
 
+            services.Configure<EmailOption>(
+                configuration.GetSection("EmailOption")
+            );
+
             return services;
         }
     }

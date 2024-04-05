@@ -1,22 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Unicam.Paradigmi.Application.Abstractions.Services;
-using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Application.Options;
-using Unicam.Paradigmi.Models.Entities;
-using Unicam.Paradigmi.Models.Repositories;
+
 
 namespace Unicam.Paradigmi.Application.Services
 {
-    // servizio per la gestione dei token, contiene i metodi per le chiamate web api con le loro logiche
+    //Servizio per la crezione e gestione del JWT 
     public class TokenService : ITokenService
     {
         private readonly JwtAuthenticationOption _jwtAuthOption;

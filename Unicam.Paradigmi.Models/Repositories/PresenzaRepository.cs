@@ -6,12 +6,12 @@ namespace Unicam.Paradigmi.Models.Repositories;
 
 public class PresenzaRepository : GenericRepository<Presenza>
 {
-    // repository per l'entità presenza
+
     public PresenzaRepository(MyDbContext ctx) : base(ctx)
     {
     }
 
-    // ottiene le presenze tramite un filtro
+    //Ricerca delle presenze tramite filtri
     public async Task<(List<Presenza>, int)> GetPresencesByFilter(string courseName, string studentSurname, string lecturerSurname, DateTime? lessonDate, int page, int pageSize)
     {
         var query = _ctx.Presenze
@@ -48,7 +48,7 @@ public class PresenzaRepository : GenericRepository<Presenza>
         int totalNum = await query.CountAsync();
 
         var presences = await query
-            .OrderBy(p => p.Lezione.DataOraInizio) // Ordina per data di lezione, se necessario
+            .OrderBy(p => p.Lezione.DataOraInizio) // Ordina per data di lezione
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();

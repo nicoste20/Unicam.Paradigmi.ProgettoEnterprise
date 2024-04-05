@@ -19,16 +19,5 @@ namespace Unicam.Paradigmi.Application.Factories
             response.Result = result;
             return response;
         }
-
-        public static BaseResponse<string?> WithError(Exception exception)
-        {
-            var response = new BaseResponse<string>();
-            response.Success = false;
-            response.Errors = new List<string>()
-            {
-                exception.Message
-            };
-            return response;
-        }
     }
 }

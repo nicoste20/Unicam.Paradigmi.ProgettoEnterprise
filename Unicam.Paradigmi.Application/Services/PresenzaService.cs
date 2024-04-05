@@ -1,11 +1,9 @@
 ﻿using Unicam.Paradigmi.Application.Abstractions.Services;
-using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Models.Entities;
 using Unicam.Paradigmi.Models.Repositories;
 
 namespace Unicam.Paradigmi.Application.Services
 {
-    // servizio per la gestione delle presenze, contiene i metodi per le chiamate web api con le loro logiche
     public class PresenzaService : IPresenzaService
     {
         private readonly PresenzaRepository _presenzaRepository;

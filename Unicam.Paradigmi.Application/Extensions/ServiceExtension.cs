@@ -1,7 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Services;
 
@@ -13,7 +10,7 @@ namespace Unicam.Paradigmi.Application.Extensions
         {
 
             services.AddValidatorsFromAssembly(
-                AppDomain.CurrentDomain.GetAssemblies()         //ottiene l'assembly della classe che contiene i validator
+                AppDomain.CurrentDomain.GetAssemblies()
                 .SingleOrDefault(assembly => assembly.GetName().Name == "Unicam.Paradigmi.Application"));
 
             //Istanze del servizio

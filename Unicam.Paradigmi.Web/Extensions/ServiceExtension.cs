@@ -1,14 +1,9 @@
-﻿using FluentValidation;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.Json.Serialization;
 using Unicam.Paradigmi.Application.Options;
-using Unicam.Paradigmi.Application.Validators;
 using Unicam.Paradigmi.Web.Results;
 
 namespace Unicam.Paradigmi.Web.Extensions

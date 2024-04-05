@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unicam.Paradigmi.Application.Abstractions.Services;
+﻿using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Models.Entities;
 using Unicam.Paradigmi.Models.Repositories;
 
 namespace Unicam.Paradigmi.Application.Services
 {
-    // servizio per la gestione dei corsi, contiene i metodi per le chiamate web api con le loro logiche
     public class CorsoService : ICorsoService
     {
         private readonly CorsoRepository _corsoRepository;

@@ -4,7 +4,6 @@ using Unicam.Paradigmi.Models.Repositories;
 
 namespace Unicam.Paradigmi.Application.Services
 {
-    // servizio per la gestione delle lezioni, contiene i metodi per le chiamate web api con le loro logiche
     public class LezioneService : ILezioneService
     {
         private readonly LezioneRepository _lezioneRepository;

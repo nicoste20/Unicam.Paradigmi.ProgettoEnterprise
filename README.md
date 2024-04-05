@@ -15,15 +15,14 @@ Per creare il database e popolarlo con dati di esempio, è possibile utilizzare 
 
 ## Avvio del Progetto
 Per avviare il progetto, seguire i seguenti passaggi:
-1. Assicurarsi che il server MySQL sia in esecuzione.
-2. Aprire il progetto `Unicam.Paradigmi.Web`.
-3. Avviare l'applicazione.
+1. Aprire il progetto `Unicam.Paradigmi.Web`.
+2. Avviare l'applicazione.
 
 ## API Disponibili
 
 Le seguenti API sono disponibili per l'utilizzo:
 
-- **Creazione di un utente (anonima senza autenticazione)**
+- **Creazione di un utente (anonima senza autenticazione) e con invio di email di benvenuto al nuovo utente**
 - **Autenticazione**
 - **Creazione di un Corso**
 - **Eliminazione di un corso**

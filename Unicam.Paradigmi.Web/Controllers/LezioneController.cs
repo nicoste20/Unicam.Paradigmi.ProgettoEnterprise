@@ -32,15 +32,9 @@ namespace Unicam.Paradigmi.Web.Controllers
         public async Task<IActionResult> CreateLezioneAsync(CreateLezioneRequest request)
         {
             //controllo che il corso per cui si sta inserendo una lezione esista
-            if (await _corsoService.GetCorsoAsync(request.IdCorso) !=null)
+            if (await _corsoService.GetCorsoAsync(request.IdCorso) != null)
             {
                 var lezione = request.ToEntity();
-
-                //gestione errore se la lezione risulta nulla
-                if (lezione == null)
-                {
-                    return BadRequest(ResponseFactory.WithError("Lezione nulla"));
-                }
 
                 await _lezioneService.AddLezioneAsync(lezione);
 
@@ -50,7 +44,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             }
             else
             {
-                return BadRequest("Corso non trovato");
+                return BadRequest(ResponseFactory.WithError("Corso non trovato"));
             }
         }
     }

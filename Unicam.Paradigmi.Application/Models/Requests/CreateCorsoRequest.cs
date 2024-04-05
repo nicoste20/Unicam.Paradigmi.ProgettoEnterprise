@@ -5,7 +5,7 @@ namespace Unicam.Paradigmi.Application.Models.Requests
     // richiesta per la creazione di un nuovo corso
     public class CreateCorsoRequest
     {
-        public string NomeCorso { get; set; }
+        public string NomeCorso { get; set; } = string.Empty;
         public int NOre { get; set; }
 
         //mapping manuale

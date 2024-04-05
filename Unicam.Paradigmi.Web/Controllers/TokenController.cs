@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph.Models;
-using System.Data;
 using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Factories;
 using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Application.Models.Responses;
-using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {

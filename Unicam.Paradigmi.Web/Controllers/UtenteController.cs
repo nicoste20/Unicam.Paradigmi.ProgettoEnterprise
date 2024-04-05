@@ -4,7 +4,6 @@ using Unicam.Paradigmi.Application.Factories;
 using Unicam.Paradigmi.Application.Models.Dtos;
 using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Application.Models.Responses;
-using Unicam.Paradigmi.Models.Entities;
 
 namespace Unicam.Paradigmi.Web.Controllers
 {
@@ -36,8 +35,6 @@ namespace Unicam.Paradigmi.Web.Controllers
             var response = new CreateUtenteResponse();
             response.utente = new UtenteDto(utente);
             return Ok(ResponseFactory.WithSuccess(response));
-            
-
         }
     }
 }

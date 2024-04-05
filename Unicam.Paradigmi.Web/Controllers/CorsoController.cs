@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Factories;
 using Unicam.Paradigmi.Application.Models.Dtos;
@@ -35,24 +34,15 @@ namespace Unicam.Paradigmi.Web.Controllers
         {
             int idUtente = _identityService.GetUserIdentity();
             var corso = request.ToEntity();
-            //aggiunta docente che crea il corso all'entità corso
             corso.IdDocente = idUtente;
 
-            //controlla che non ci siano altri corsi con lo stesso nome
-            if (! await _corsoService.ExistCorsoByNameAsync(corso.NomeCorso)) {
-                //aggiunta del corso
-                await _corsoService.AddCorsoAsync(corso);
+            await _corsoService.AddCorsoAsync(corso);
 
-                var response = new CreateCorsoResponse();
-                response.Corso = new CorsoDto(corso);
-                return Ok(ResponseFactory.WithSuccess(response));
-            }
-            else
-            {
-                return BadRequest(ResponseFactory.WithError("Esiste già un corso con lo stesso nome"));
-            }
+            var response = new CreateCorsoResponse();
+            response.Corso = new CorsoDto(corso);
+            return Ok(ResponseFactory.WithSuccess(response));
+
         }
-
 
         //endpoint per l'eliminazione di un corso
         [HttpDelete]

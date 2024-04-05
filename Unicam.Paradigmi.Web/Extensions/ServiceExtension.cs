@@ -66,7 +66,7 @@ namespace Unicam.Paradigmi.Web.Extensions
                     var securityKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(key)
                         );
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateIssuer = true,
                         ValidateLifetime = true,

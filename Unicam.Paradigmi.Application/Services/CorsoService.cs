@@ -13,20 +13,20 @@ namespace Unicam.Paradigmi.Application.Services
             _corsoRepository = corsoRepository;
         }
 
-        // metodo per ottenere un corso dal repository tramite ID
+        //metodo per ottenere un corso dal repository tramite ID
         public async Task<Corso> GetCorsoAsync(int id)
         {
             return await _corsoRepository.OttieniAsync(id);
         }
 
-        // metodo per l'aggiunta di un nuovo corso
+        //metodo per l'aggiunta di un nuovo corso
         public async Task AddCorsoAsync(Corso corso)
         {
             await _corsoRepository.AggiungiAsync(corso);
             await _corsoRepository.SaveAsync();
         }
 
-        // metodo per eliminare un corso
+        //metodo per eliminare un corso
         public async Task DeleteAsync(Corso corso)
         {
             await _corsoRepository.Elimina(corso);

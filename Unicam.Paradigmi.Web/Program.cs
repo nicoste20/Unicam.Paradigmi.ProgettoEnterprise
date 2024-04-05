@@ -12,7 +12,6 @@ builder.Services
 
 var app = builder.Build();
 
-app.AddWebMiddleware()
-    .AddApplicationMiddleware();
+app.AddWebMiddleware();
 
 app.Run();

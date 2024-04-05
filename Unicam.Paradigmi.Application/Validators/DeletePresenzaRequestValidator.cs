@@ -10,9 +10,9 @@ namespace Unicam.Paradigmi.Application.Validators
         {
             RuleFor(r=>r.IdPresenza)
                 .NotNull()
-                .WithMessage("Il campo IdCorso è obbligatorio")
+                .WithMessage("Il campo IdCorso non puó essere null")
                 .NotEmpty()
-                .WithMessage("Il campo IdCorso non può essere nullo");
+                .WithMessage("Il campo IdCorso non può essere vuoto");
         }
     }
 }

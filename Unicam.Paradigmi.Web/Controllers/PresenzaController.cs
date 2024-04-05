@@ -1,9 +1,6 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph.Privacy;
 using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Factories;
 using Unicam.Paradigmi.Application.Models.Dtos;
@@ -38,7 +35,7 @@ namespace Unicam.Paradigmi.Web.Controllers
             var presenza = request.ToEntity();
 
             //controllo che la mail dell'alunno sia presente nel db
-            if(await _utenteService.GetUserByEmailAsync(request.EmailAlunno)==null)
+            if(await _utenteService.GetUserByEmailAsync(request.EmailAlunno) == null)
             {
                 return BadRequest(ResponseFactory.WithError("Email Alunno non presente"));
             }
@@ -50,9 +47,8 @@ namespace Unicam.Paradigmi.Web.Controllers
             //controllo che la lezione per cui si sta inserendo la lezione non sia nulla
             if (lezione != null)
             {
-                //controllo che gli orari della presenza siano congrui con quelli della lezione
-                var presenzaValida = ControllaLezioneAsync(presenza.IdLezione, presenza.DataOraInizio, presenza.DataOraFine);
-                if (await presenzaValida)
+                //controllo che gli orari della presenza siano validi rispetto a quelli della lezione
+                if (presenza.DataOraInizio >= lezione.DataOraInizio && presenza.DataOraFine <= lezione.DataOraFine)
                 {
                     await _presenzaService.AddPresenzaAsync(presenza);
                    
@@ -84,27 +80,13 @@ namespace Unicam.Paradigmi.Web.Controllers
             return BadRequest(ResponseFactory.WithError("Presenza non presente"));
         }
 
-        //metodo privato che conrtolla che gli orari della presenza siano congurui con quelli della lezione
-        private async Task<bool> ControllaLezioneAsync(int idLezione, DateTime inizioPresenza, DateTime finePresenza)
-        {
-            var lezione = await _lezioneService.GetLezioneByIdAsync(idLezione);
-            if(lezione != null)
-            {
-                if (inizioPresenza >= lezione.DataOraInizio && finePresenza <= lezione.DataOraFine)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         //endpoint per la ricerca di una presenza
         [HttpPost]
         [Route("search")]
         public async Task<IActionResult> SearchPresenze(SearchPresenzeRequest request)
         {
-            var (search, totalNum) = await _presenzaService.Search(request.NomeCorso, request.CognomeStudente, request.CognomeDocente,
-                request.DataLezione,request.Pagina,request.DimensionePagina);
+            var (search, totalNum) = await _presenzaService.Search(request.NomeCorso, request.CognomeStudente,
+                request.CognomeDocente, request.DataLezione,request.Pagina,request.DimensionePagina);
 
            var response = new SearchPresenzeResponse();
            var pageFounded = (totalNum / (decimal)request.DimensionePagina);

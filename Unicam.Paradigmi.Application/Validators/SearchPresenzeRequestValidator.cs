@@ -20,10 +20,14 @@ namespace Unicam.Paradigmi.Application.Validators
                 });
 
             RuleFor(request => request.Pagina)
+                .NotEmpty()
+                .WithMessage("Il campo pagina non puó essere vuoto")
                 .GreaterThan(0)
                 .WithMessage("La pagina deve essere più grande di 0");
 
             RuleFor(request => request.DimensionePagina)
+                .NotEmpty()
+                .WithMessage("Il campo dimensione della pagina non puó essere vuoto")
                 .GreaterThan(0)
                 .WithMessage("La dimensione della pagina deve essere più grande di 0");
         }

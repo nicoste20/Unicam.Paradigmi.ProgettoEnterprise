@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph.Models;
+using System.Security.Claims;
 using Unicam.Paradigmi.Application.Abstractions.Services;
 using Unicam.Paradigmi.Application.Factories;
 using Unicam.Paradigmi.Application.Models.Dtos;
 using Unicam.Paradigmi.Application.Models.Requests;
 using Unicam.Paradigmi.Application.Models.Responses;
+using Unicam.Paradigmi.Web.Utility;
 
 
 namespace Unicam.Paradigmi.Web.Controllers
@@ -19,12 +22,10 @@ namespace Unicam.Paradigmi.Web.Controllers
 
         private readonly ICorsoService _corsoService;
 
-        private readonly IIdentityService _identityService;
 
-        public CorsoController(ICorsoService corsoService, IIdentityService identityService)
+        public CorsoController(ICorsoService corsoService)
         {
             _corsoService = corsoService;
-            _identityService = identityService;
         }
 
         //endpoint per la creazione di un corso
@@ -32,7 +33,7 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("new")]
         public async Task<IActionResult> CreateCorsoAsync(CreateCorsoRequest request)
         {
-            int idUtente = _identityService.GetUserIdentity();
+            var idUtente = IdentityUtility.GetUserIdentity(User.Identity as ClaimsIdentity);
             var corso = request.ToEntity();
             corso.IdDocente = idUtente;
 
@@ -49,7 +50,7 @@ namespace Unicam.Paradigmi.Web.Controllers
         [Route("delete")]
         public async Task<IActionResult> DeleteCorsoAsync(DeleteCorsoRequest request)
         {
-            var idUtente = _identityService.GetUserIdentity();
+            var idUtente = IdentityUtility.GetUserIdentity(User.Identity as ClaimsIdentity);
             var corso = await _corsoService.GetCorsoAsync(request.IdCorso);
 
             //controllo che l'utente che cerca di eseguire la cancellazione del corso sia lo stesso che lo ha creato

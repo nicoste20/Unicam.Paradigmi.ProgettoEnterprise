@@ -16,8 +16,6 @@ namespace Unicam.Paradigmi.Application.Extensions
             
             services.AddScoped<IEmailService, EmailService>();
             //Permette di accedere alle contesto di chiamate e risposte HTTP
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICorsoService, CorsoService>();

@@ -8,7 +8,7 @@ Questo progetto consiste nella realizzazione di una Web API per la gestione dei 
 - Database: SQL
 
 ## Requisiti del Database
-Il database utilizzato è di tipo MySQL e prende il nome di `Paradigmi_Progetto`. Le credenziali per l'accesso al database sono le seguenti:
+Il database utilizzato è di tipo SQL e prende il nome di `Paradigmi_Progetto`. Le credenziali per l'accesso al database sono le seguenti:
 - Username: paradigmi
 - Password: paradigmi
 Per creare il database e popolarlo con dati di esempio, è possibile utilizzare il dump fornito nel progetto `Unicam.Paradigmi.Models`, all'interno della cartella `Database`.

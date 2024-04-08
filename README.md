@@ -5,7 +5,7 @@ Questo progetto consiste nella realizzazione di una Web API per la gestione dei 
 ## Tecnologie Utilizzate
 - Linguaggio di programmazione: C#
 - Framework: ASP.NET Core
-- Database: MySQL
+- Database: SQL
 
 ## Requisiti del Database
 Il database utilizzato è di tipo MySQL e prende il nome di `Paradigmi_Progetto`. Le credenziali per l'accesso al database sono le seguenti:
